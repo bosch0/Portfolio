@@ -40,17 +40,17 @@ A modern, responsive portfolio website built with cutting-edge web technologies 
   - Best practices: +100
   - SEO: +100
 - **First Contentful Paint**: < 0.4s
-- **Largest Contentful Paint**: < 0.5s
+- **Largest Contentful Paint**: < 0.4s
 - **Cumulative Layout Shift**: 0
 
 ### 📱 Mobile
 - **Lighthouse Score**
-  - Performance: +98
+  - Performance: +100
   - Accessibility: +97
   - Best practices: +100
   - SEO: +100
 - **First Contentful Paint**: < 1.5s
-- **Largest Contentful Paint**: < 2.3s
+- **Largest Contentful Paint**: < 1.5s
 - **Cumulative Layout Shift**: 0
 
 ## 📄 License
