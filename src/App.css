@@ -3,7 +3,7 @@
 
 html {
     @apply scroll-smooth;
-    background-color: #44403c;
+    background-color: #0c0a09;
 }
 
 body {
@@ -34,10 +34,6 @@ p {
 
 @supports (padding-top: env(safe-area-inset-top)) {
     html {
-        background-color: #44403c;
-    }
-    
-    html.dark {
         background-color: #0c0a09;
     }
     
