@@ -3,10 +3,13 @@
 
 html {
     @apply scroll-smooth;
+    background-color: #44403c;
 }
 
 body {
     @apply select-none bg-gradient-to-br from-neutral-700 to-stone-600 dark:from-stone-950 dark:to-stone-900 transition-colors;
+    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 h1 {
@@ -27,6 +30,21 @@ h4 {
 
 p {
     @apply text-sm dark:text-neutral-500 text-neutral-800 text-pretty;
+}
+
+@supports (padding-top: env(safe-area-inset-top)) {
+    html {
+        background-color: #44403c;
+    }
+    
+    html.dark {
+        background-color: #0c0a09;
+    }
+    
+    body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
 }
 
 @keyframes backgroundEnterTop {
