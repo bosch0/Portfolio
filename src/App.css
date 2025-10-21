@@ -1,0 +1,70 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+    @apply scroll-smooth select-none bg-gradient-to-br from-neutral-700 to-stone-600 dark:from-stone-950 dark:to-stone-900 transition-colors;
+}
+
+h1 {
+    @apply xl:text-8xl md:text-7xl text-5xl text-left font-bold bg-gradient-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent xl:py-4 py-2 drop-shadow-md drop-shadow-stone-950/50;
+}
+
+h2 {
+    @apply md:text-5xl text-3xl font-medium bg-gradient-to-r from-stone-950 to-stone-900 dark:from-stone-100 dark:to-stone-50 bg-clip-text text-transparent;
+}
+
+h3 {
+    @apply xl:text-4xl text-3xl font-light tracking-widest bg-gradient-to-r from-stone-950 to-stone-900 dark:from-stone-100 dark:to-stone-50 bg-clip-text text-transparent;
+}
+
+h4 {
+    @apply xl:text-2xl text-lg font-medium text-stone-800 dark:text-stone-300;
+}
+
+p {
+    @apply text-sm dark:text-neutral-500 text-neutral-800 text-pretty;
+}
+
+@keyframes backgroundEnterTop {
+    from {
+        opacity: 0;
+        transform: translateY(-10vh);
+    }
+}
+
+@keyframes backgroundEnter {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes enterLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-5vw);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes enterRight {
+    from {
+        opacity: 0;
+        transform: translateX(5vw);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes infiniteCarousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

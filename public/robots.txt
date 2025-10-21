@@ -1,0 +1,24 @@
+# This file helps search engines understand how to crawl your website
+
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl the entire site
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /build/
+Disallow: /*.log$
+
+# Common directories to exclude from crawling
+Disallow: /temp/
+Disallow: /tmp/
+Disallow: /cache/
+
+# Allow access to CSS and JS files for better rendering in search results
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /assets/
