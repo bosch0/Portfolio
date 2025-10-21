@@ -2,7 +2,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 html {
-    @apply scroll-smooth select-none bg-gradient-to-br from-neutral-700 to-stone-600 dark:from-stone-950 dark:to-stone-900 transition-colors;
+    @apply scroll-smooth;
+}
+
+body {
+    @apply select-none bg-gradient-to-br from-neutral-700 to-stone-600 dark:from-stone-950 dark:to-stone-900 transition-colors;
 }
 
 h1 {
