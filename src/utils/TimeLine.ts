@@ -1,24 +1,29 @@
 import type { TimeLineItem } from '../types';
+import { translations, type Locale } from '../i18n/translations';
 
-export const timeLine: TimeLineItem[] = [
-  {
-    title: 'Custom Script Development',
-    icon: "stack",
-    description: 'Transform your ideas into fully functional and polished FiveM scripts. Everything is handled in-house from concept and planning to development, testing, and optimization ensuring a seamless final product.',
-  },
-  {
-    title: 'Tebex Store Creation & Integration',
-    icon: "tebex",
-    description: 'Set up your shop, manage product tiers, and connect automated purchases to in-game rewards for a smooth monetization system.',
-  },
-  {
-    title: 'UI/UX Development',
-    icon: "uiux",
-    description: 'Create immersive and intuitive user interfaces that enhance player experience. I design and develop UIs with a focus on clarity, performance, and modern aesthetics.',
-  },
-  {
-    title: 'Full Server Setups',
-    icon: "server",
-    description: 'Set up or upgrade your FiveM server with strong technical foundations. I handle framework installation, resource integration, and full configuration for smooth, consistent gameplay.',
-  },
-];
+export const getTimeLine = (locale: Locale): TimeLineItem[] => {
+  const items = translations[locale].timeLineData;
+
+  return [
+    {
+      title: items[0].title,
+      icon: 'stack',
+      description: items[0].description,
+    },
+    {
+      title: items[1].title,
+      icon: 'tebex',
+      description: items[1].description,
+    },
+    {
+      title: items[2].title,
+      icon: 'uiux',
+      description: items[2].description,
+    },
+    {
+      title: items[3].title,
+      icon: 'server',
+      description: items[3].description,
+    },
+  ];
+};

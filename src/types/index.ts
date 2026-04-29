@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 export interface TimeLineItem {
   title: string;
@@ -6,11 +6,10 @@ export interface TimeLineItem {
   description: string;
 }
 
-export interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
-  onClick?: () => void;
   className?: string;
 }
 
@@ -25,6 +24,7 @@ interface Link {
   title: string;
   url: string;
   variant?: "primary" | "secondary" | "outline";
+  icon?: string;
 }
 
 export interface CardProps {
@@ -32,5 +32,6 @@ export interface CardProps {
   description: string;
   technologies: string[];
   thumbnail: string;
+  showFullThumbnail?: boolean;
   links: Link[];
 }

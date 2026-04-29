@@ -24,3 +24,5 @@ export { FivemIcon } from "./FivemIcon";
 export { DiscordIcon } from "./DiscordIcon";
 export { LinkedInIcon } from "./LinkedInIcon";
 export { MailIcon } from "./MailIcon";
+export { UkFlagIcon } from "./UkFlagIcon";
+export { SpainFlagIcon } from "./SpainFlagIcon";

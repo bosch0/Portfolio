@@ -1,14 +1,19 @@
 import React from "react";
-import { timeLine } from '../../utils/TimeLine';
+import { getTimeLine } from '../../utils/TimeLine';
 import * as Icons from '../icons';
+import { useLocale } from '../../hooks';
 
 export const TimeLine: React.FC = () => {
+    const { locale } = useLocale();
+
     const icons: { [key: string]: React.ReactNode } = {
         stack: <Icons.StackIcon className="stroke-orange-400"/>,
         uiux: <Icons.UIUXIcon className="fill-orange-400"/>,
         tebex: <Icons.TebexIcon className="fill-orange-400"/>,
         server: <Icons.ServerIcon className="fill-orange-400"/>,
     }
+
+    const timeLine = getTimeLine(locale);
 
     return (
         <div className="animate-[enterRight_1s_ease-in-out] z-1">

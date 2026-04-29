@@ -11,4 +11,4 @@ export const TECHNOLOGIES = {
   DevOps: [ "Bash", "Git", "GitHub", "Linux (Ubuntu Server)" ],
 }
 
-export const NAVIGATION = [ "home", "projects", "experience", "contact" ]
+export const NAVIGATION = [ "home", "projects", "experience", "contact" ] as const

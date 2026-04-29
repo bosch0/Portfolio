@@ -22,7 +22,7 @@ export const Section: React.FC<SectionProps> = ({
             >
                 <div className="w-full flex justify-center items-center mb-2 relative">
                 <h1 className="z-1">{title}</h1>
-                <h1 className="absolute xl:-translate-y-2 tracking-widest text-nowrap opacity-15 blur-sm xl:text-9xl! text-5xl!">{title}</h1>
+                <h1 className="absolute xl:-translate-y-2 tracking-widest text-nowrap opacity-20 blur-sm xl:text-9xl text-5xl">{title}</h1>
                 </div>
             </motion.div>
         );

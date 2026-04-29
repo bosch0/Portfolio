@@ -30,3 +30,5 @@ export const useTheme = () => {
 
   return { isDark, toggleTheme };
 };
+
+export { LocaleProvider, useLocale } from './useLocale';
