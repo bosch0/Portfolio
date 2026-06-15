@@ -1,7 +1,7 @@
 export const CONTACT_INFO = {
   "GitHub": 'https://github.com/bosch0',
   "LinkedIn": 'https://www.linkedin.com/in/iv%C3%A1n-bosch/',
-  "Discord": 'https://discord.com/invite/yMV5A9RBcw',
+  "Mail": 'mailto:ibdh07@gmail.com',
 }
 
 export const TECHNOLOGIES = {

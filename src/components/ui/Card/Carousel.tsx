@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactIcon, ViteIcon, TailwindIcon, LuaIcon, SvelteIcon, MariaDBIcon } from '../../icons';
+import { ReactIcon, ViteIcon, TailwindIcon, LuaIcon, SvelteIcon, MariaDBIcon, TypeScriptIcon, NextJSIcon, SupabaseIcon, StripeIcon } from '../../icons';
 
 export const Carousel: React.FC<{ techs: string[] }> = ({ techs }) => {
     const icons: { [key: string]: React.ReactNode } = {
@@ -9,6 +9,10 @@ export const Carousel: React.FC<{ techs: string[] }> = ({ techs }) => {
         Lua: <LuaIcon className="fill-[#000080]" />,
         Svelte: <SvelteIcon className="fill-[#ff3e00]" />,
         MariaDB: <MariaDBIcon className="fill-[#003545]" />,
+        TypeScript: <TypeScriptIcon className="fill-[#3178c6]" />,
+        'Next.js': <NextJSIcon className="fill-[#000000]" />,
+        Supabase: <SupabaseIcon />,
+        Stripe: <StripeIcon className="fill-[#635BFF]" />,
     };
 
     const TechList = ({ prefix }: { prefix: string }) => (

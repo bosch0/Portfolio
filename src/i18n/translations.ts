@@ -12,7 +12,7 @@ export const translations = {
     home: {
       greeting: 'Hey There!',
       intro: "I'm Bosch.",
-      role: 'FiveM Full-Stack Developer',
+      role: 'Full-Stack Developer',
     },
     projects: {
       title: 'My Projects',
@@ -22,10 +22,10 @@ export const translations = {
       aboutTitle: 'About Me',
       skillsTitle: 'Skills',
       aboutParagraphs: [
-        'At the end of 2021, I developed an interest in creating resources for FiveM, a multiplayer modification of GTAV.',
-        'Since then, I have self-taught the technologies required to build scripts for this platform and have collaborated on numerous projects alongside experienced developers, which has helped me expand my knowledge in real-world environments.',
-        'I am currently leading a remote project with an international team based in the United States, using technologies such as Lua for the backend, Svelte and React.js for the frontend, and Linux (Ubuntu Server) for server hosting.',
-        'I am motivated to continue expanding my skills and begin my career as a web application developer, applying my experience in collaborative projects and modern technologies.',
+        "I'm a self-taught Full-Stack developer. My technical journey started in late 2021 building real-time systems for FiveM, a multiplayer mod for GTA V, where I shipped production-quality scripts used by active communities and collaborated with experienced developers on international teams.",
+        'That hands-on environment pushed me deep into frontend (Svelte, React.js), backend logic (Lua, Node.js), database management (MariaDB, PostgreSQL), and Linux server administration, skills I now apply to modern web applications.',
+        'My latest project is Boutique Stays, a full-stack vacation rental platform built with Next.js 16, React, TypeScript, Supabase, Stripe, and Resend. It covers real-time availability checks, a complete Stripe checkout flow, transactional email, and i18n in three languages.',
+        "I'm now looking for my first professional role as a web developer, where I can contribute from day one and grow alongside a strong team.",
       ],
       categories: {
         frontend: 'Frontend',
@@ -38,27 +38,33 @@ export const translations = {
       title: 'Contact Me',
       socialTitle: 'Social Media',
       socialDescription:
-        'Want to learn more about me and my work? Follow me on social media or join my Discord server to stay updated on my latest projects, share ideas, and connect!',
-      partnershipTitle: "Let's build something great together!",
+        'Actively looking for my first professional web developer role. Connect with me on LinkedIn or explore my code on GitHub.',
+      partnershipTitle: 'Open to Work',
       partnershipDescription:
-        "Looking for a dedicated developer who combines technical skill with design sense and monetization strategy? Don't hesitate to ask any questions about your project, budget estimates, timelines, or just to have a friendly chat about your ideas - no commitment required!",
-      discordCta: 'Reach me anytime on Discord:',
-      discordUsername: 'boscho',
+        "I'm a Full-Stack developer actively seeking my first professional opportunity. Whether you have a role in mind or just want to talk tech, I'd love to connect, no commitment required.",
+      emailCta: 'Send me an email:',
+      email: 'ibdh07@gmail.com',
     },
     footer: {
       copyright: 'All rights reserved.',
     },
     projectsData: {
+      boutiqueStays: {
+        title: 'Boutique Stays',
+        description:
+          'In development. Full-stack vacation rental platform with real-time availability, Stripe checkout, transactional email via Resend, and i18n in three languages. Built with Next.js 16 App Router, Supabase PostgreSQL with Row Level Security, and React Email for confirmation templates.',
+        demo: 'Preview',
+      },
       hiddenRp: {
         title: 'Hidden RP',
         description:
-          'Custom FiveM roleplay server featuring optimized systems and immersive gameplay. Built with Lua and qb-core framework, integrated with MySQL/MariaDB databases for efficient data management. Modern user interfaces developed with Svelte and React, delivering a seamless and engaging experience for players in a dynamic roleplay environment.',
+          'Custom roleplay server built on qb-core (FiveM) with optimized Lua backend scripts, Svelte and React.js UI components, and MariaDB database integration. Delivered end-to-end as a solo developer with a focus on performance and player experience.',
         showcase: 'Showcase',
       },
       oneRpg: {
         title: 'OneRPG',
         description:
-          'FiveM RPG server focused on immersive progression, custom systems, and a polished player experience. Built with performant server-side logic, persistent data flows, and modern interfaces to deliver a stable and engaging world for long-term communities.',
+          'RPG server (FiveM) with custom progression systems, persistent data flows backed by MariaDB, and modern Svelte/React interfaces. Built with emphasis on stability, long-term community retention, and maintainable server-side architecture.',
         showcase: 'Showcase',
       },
       portfolio: {
@@ -71,24 +77,24 @@ export const translations = {
     },
     timeLineData: [
       {
-        title: 'Custom Script Development',
+        title: 'Frontend Development',
         description:
-          'Transform your ideas into fully functional and polished FiveM scripts. Everything is handled in-house from concept and planning to development, testing, and optimization ensuring a seamless final product.',
+          'Building responsive, accessible UIs with React, TypeScript, and Tailwind CSS, with attention to performance, clean component architecture, and consistent cross-device experience.',
       },
       {
-        title: 'Tebex Store Creation & Integration',
+        title: 'Backend & APIs',
         description:
-          'Set up your shop, manage product tiers, and connect automated purchases to in-game rewards for a smooth monetization system.',
+          'Server-side logic, REST API design, and database modeling with Node.js, PostgreSQL, and Supabase. Authentication, row-level security, and real-time data flows.',
       },
       {
-        title: 'UI/UX Development',
+        title: 'Full-Stack Applications',
         description:
-          'Create immersive and intuitive user interfaces that enhance player experience. I design and develop UIs with a focus on clarity, performance, and modern aesthetics.',
+          'End-to-end product delivery, from database schema and API design to UI components and production deployment on Vercel and similar platforms.',
       },
       {
-        title: 'Full Server Setups',
+        title: 'Third-Party Integrations',
         description:
-          'Set up or upgrade your FiveM server with strong technical foundations. I handle framework installation, resource integration, and full configuration for smooth, consistent gameplay.',
+          'Connecting apps to external services: Stripe for payments, Resend for transactional email, Leaflet for maps, and more, turning specs into working features.',
       },
     ],
   },
@@ -105,7 +111,7 @@ export const translations = {
     home: {
       greeting: '¡Hola!',
       intro: 'Soy Bosch.',
-      role: 'Desarrollador Full-Stack de FiveM',
+      role: 'Desarrollador Full-Stack',
     },
     projects: {
       title: 'Mis Proyectos',
@@ -115,10 +121,10 @@ export const translations = {
       aboutTitle: 'Sobre Mí',
       skillsTitle: 'Habilidades',
       aboutParagraphs: [
-        'A finales de 2021, empecé a interesarme por crear recursos para FiveM, una modificación multijugador de GTAV.',
-        'Desde entonces, he aprendido por mi cuenta las tecnologías necesarias para construir scripts para esta plataforma y he colaborado en numerosos proyectos junto a desarrolladores con experiencia, lo que me ha ayudado a ampliar mis conocimientos en entornos reales.',
-        'Actualmente lidero un proyecto remoto con un equipo internacional con base en Estados Unidos, usando tecnologías como Lua para el backend, Svelte y React.js para el frontend, y Linux (Ubuntu Server) para el alojamiento del servidor.',
-        'Tengo la motivación de seguir ampliando mis habilidades e iniciar mi carrera como desarrollador de aplicaciones web, aplicando mi experiencia en proyectos colaborativos y tecnologías modernas.',
+        'Soy un desarrollador Full-Stack autodidacta. Mi trayectoria técnica comenzó a finales de 2021 construyendo sistemas en tiempo real para FiveM, un mod multijugador de GTA V, donde entregué scripts de calidad de producción usados por comunidades activas y colaboré con desarrolladores con experiencia en equipos internacionales.',
+        'Ese entorno práctico me llevó a profundizar en frontend (Svelte, React.js), lógica de backend (Lua, Node.js), gestión de bases de datos (MariaDB, PostgreSQL) y administración de servidores Linux, habilidades que ahora aplico a aplicaciones web modernas.',
+        'Mi proyecto más reciente es Boutique Stays, una plataforma full-stack de alquiler vacacional construida con Next.js 16, React, TypeScript, Supabase, Stripe y Resend. Incluye disponibilidad en tiempo real, un flujo de pago completo con Stripe, email transaccional e i18n en tres idiomas.',
+        'Actualmente busco mi primer puesto profesional como desarrollador web, donde pueda aportar desde el primer día y crecer junto a un equipo sólido.',
       ],
       categories: {
         frontend: 'Frontend',
@@ -131,27 +137,33 @@ export const translations = {
       title: 'Contáctame',
       socialTitle: 'Redes Sociales',
       socialDescription:
-        '¿Quieres saber más sobre mí y mi trabajo? Sígueme en redes sociales o únete a mi servidor de Discord para mantenerte al día con mis últimos proyectos, compartir ideas y conectar conmigo.',
-      partnershipTitle: '¡Construyamos algo genial juntos!',
+        'Busco activamente mi primer puesto profesional como desarrollador web. Conéctate conmigo en LinkedIn o explora mi código en GitHub.',
+      partnershipTitle: 'Disponible para trabajar',
       partnershipDescription:
-        '¿Buscas un desarrollador comprometido que combine técnica, criterio visual y estrategia de monetización? No dudes en hacerme cualquier pregunta sobre tu proyecto, presupuestos, plazos o simplemente para hablar de tus ideas sin compromiso.',
-      discordCta: 'Puedes escribirme en Discord en cualquier momento:',
-      discordUsername: 'boscho',
+        'Soy un desarrollador Full-Stack buscando activamente mi primera oportunidad profesional. Ya sea que tengas un puesto en mente o simplemente quieras hablar de tecnología, me encantaría conectar.',
+      emailCta: 'Envíame un correo:',
+      email: 'ibdh07@gmail.com',
     },
     footer: {
       copyright: 'Todos los derechos reservados.',
     },
     projectsData: {
+      boutiqueStays: {
+        title: 'Boutique Stays',
+        description:
+          'En desarrollo. Plataforma full-stack de alquiler vacacional con disponibilidad en tiempo real, pago con Stripe, email transaccional vía Resend e i18n en tres idiomas. Construida con Next.js 16 App Router, Supabase PostgreSQL con Row Level Security y React Email para las plantillas de confirmación.',
+        demo: 'Vista Previa',
+      },
       hiddenRp: {
         title: 'Hidden RP',
         description:
-          'Servidor de rol de FiveM hecho a medida con sistemas optimizados y una jugabilidad inmersiva. Construido con Lua y el framework qb-core, integrado con bases de datos MySQL/MariaDB para una gestión eficiente de la información. Interfaces modernas desarrolladas con Svelte y React, ofreciendo una experiencia fluida y atractiva para los jugadores en un entorno de rol dinámico.',
+          'Servidor de rol construido sobre qb-core (FiveM) con scripts Lua optimizados, componentes UI en Svelte y React.js, e integración con MariaDB. Entregado de principio a fin como desarrollador individual con foco en rendimiento y experiencia de usuario.',
         showcase: 'Demostración',
       },
       oneRpg: {
         title: 'OneRPG',
         description:
-          'Servidor RPG de FiveM centrado en una progresión inmersiva, sistemas personalizados y una experiencia de jugador pulida. Construido con lógica de servidor eficiente, flujos de datos persistentes e interfaces modernas para ofrecer un mundo estable y atractivo para comunidades a largo plazo.',
+          'Servidor RPG (FiveM) con sistemas de progresión personalizados, flujos de datos persistentes en MariaDB e interfaces modernas con Svelte y React. Construido con énfasis en estabilidad, retención de la comunidad a largo plazo y arquitectura de servidor mantenible.',
         showcase: 'Demostración',
       },
       portfolio: {
@@ -164,24 +176,24 @@ export const translations = {
     },
     timeLineData: [
       {
-        title: 'Desarrollo de Scripts a Medida',
+        title: 'Desarrollo Frontend',
         description:
-          'Convierte tus ideas en scripts de FiveM totalmente funcionales y pulidos. Todo se gestiona internamente, desde el concepto y la planificación hasta el desarrollo, las pruebas y la optimización, garantizando un resultado final sin fricciones.',
+          'Interfaces responsivas y accesibles con React, TypeScript y Tailwind CSS, con foco en rendimiento, arquitectura de componentes limpia y experiencia consistente en todos los dispositivos.',
       },
       {
-        title: 'Creación e Integración de Tiendas Tebex',
+        title: 'Backend y APIs',
         description:
-          'Configura tu tienda, gestiona los niveles de productos y conecta compras automáticas con recompensas dentro del juego para conseguir un sistema de monetización fluido.',
+          'Lógica de servidor, diseño de APIs REST y modelado de bases de datos con Node.js, PostgreSQL y Supabase. Autenticación, seguridad a nivel de fila y flujos de datos en tiempo real.',
       },
       {
-        title: 'Desarrollo UI/UX',
+        title: 'Aplicaciones Full-Stack',
         description:
-          'Crea interfaces inmersivas e intuitivas que mejoren la experiencia del jugador. Diseño y desarrollo UIs con foco en claridad, rendimiento y estética moderna.',
+          'Entrega end-to-end, desde el esquema de base de datos y el diseño de API hasta los componentes de UI y el despliegue en producción en Vercel y plataformas similares.',
       },
       {
-        title: 'Configuraciones Completas de Servidor',
+        title: 'Integraciones con Terceros',
         description:
-          'Configura o actualiza tu servidor de FiveM con bases técnicas sólidas. Me encargo de la instalación del framework, la integración de recursos y la configuración completa para una experiencia fluida y consistente.',
+          'Conexión de aplicaciones con servicios externos: Stripe para pagos, Resend para email transaccional, Leaflet para mapas y más, de la especificación a la funcionalidad real.',
       },
     ],
   },

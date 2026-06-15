@@ -7,9 +7,9 @@ export const TimeLine: React.FC = () => {
     const { locale } = useLocale();
 
     const icons: { [key: string]: React.ReactNode } = {
-        stack: <Icons.StackIcon className="stroke-orange-400"/>,
-        uiux: <Icons.UIUXIcon className="fill-orange-400"/>,
-        tebex: <Icons.TebexIcon className="fill-orange-400"/>,
+        codetag: <Icons.CodeTagIcon className="stroke-orange-400"/>,
+        terminal: <Icons.TerminalIcon className="stroke-orange-400"/>,
+        layers: <Icons.LayersIcon className="stroke-orange-400"/>,
         server: <Icons.ServerIcon className="fill-orange-400"/>,
     }
 

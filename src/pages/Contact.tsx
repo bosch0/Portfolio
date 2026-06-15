@@ -12,6 +12,7 @@ export const Contact: React.FC = () => {
   const icons: { [key: string]: React.ReactNode } = {
       GitHub: <GitHubIcon className="fill-[#181717]" />,
       Discord: <DiscordIcon className="fill-[#5865F2]" />,
+      Mail: <MailIcon className="fill-orange-400" />,
       MailIcon: <MailIcon className="fill-neutral-100/90" />,
       LinkedIn: <LinkedInIcon className="fill-[#0A66C2]" />,
       Arrow: <ArrowIcon className="dark:stroke-[#ffffff] stroke-[#000000]"/>,
@@ -64,12 +65,12 @@ export const Contact: React.FC = () => {
             {t.contact.partnershipTitle}
           </h3>
           <p className="xl:text-lg! flex-1 xl:text-balance! xl:text-left text-center">{t.contact.partnershipDescription}</p>
-          <a className="xl:w-auto w-full" href="https://discord.com/users/574624704975863808" target="_blank" rel="noopener noreferrer">
-            <Button className='flex items-center justify-center w-full py-3 gap-3 from-blue-400! to-blue-700! hover:to-blue-400!'>
+          <a className="xl:w-auto w-full" href="mailto:ibdh07@gmail.com">
+            <Button className='flex items-center justify-center w-full py-3 gap-3'>
               <div className="xl:block hidden min-w-8 h-8">
                   {icons["MailIcon"]}
               </div>
-              <div>{t.contact.discordCta} <span className="bg-stone-900/50 rounded-lg py-1 px-2">{t.contact.discordUsername}</span></div>
+              <div>{t.contact.emailCta} <span className="bg-stone-900/50 rounded-lg py-1 px-2">{t.contact.email}</span></div>
             </Button>
           </a>
         </div>

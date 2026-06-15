@@ -7,17 +7,17 @@ export const getTimeLine = (locale: Locale): TimeLineItem[] => {
   return [
     {
       title: items[0].title,
-      icon: 'stack',
+      icon: 'codetag',
       description: items[0].description,
     },
     {
       title: items[1].title,
-      icon: 'tebex',
+      icon: 'terminal',
       description: items[1].description,
     },
     {
       title: items[2].title,
-      icon: 'uiux',
+      icon: 'layers',
       description: items[2].description,
     },
     {

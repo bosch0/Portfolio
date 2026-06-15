@@ -7,31 +7,16 @@ export const getCards = (locale: Locale): CardProps[] => {
 
   return [
     {
-      title: data.hiddenRp.title,
-      description: data.hiddenRp.description,
-      technologies: ['Lua', 'Svelte', 'MariaDB'],
-      thumbnail: 'thumbnails/hiddenrp.webp',
-        links: [
-          {
-            title: data.hiddenRp.showcase,
-            url: 'https://youtu.be/_NeYUP1XY5Q?si=JVmGAz_FZvDZ_oua',
-            variant: 'outline',
-            icon: 'Showcase',
-          },
-        ],
-    },
-    {
-      title: data.oneRpg.title,
-      description: data.oneRpg.description,
-      technologies: ['Lua', 'Svelte', 'MariaDB', 'React'],
-      thumbnail: 'thumbnails/onerpg.webp',
-      showFullThumbnail: true,
+      title: data.boutiqueStays.title,
+      description: data.boutiqueStays.description,
+      technologies: ['Next.js', 'TypeScript', 'Supabase', 'Stripe'],
+      thumbnail: 'thumbnails/booking_app.webp',
       links: [
         {
-          title: data.oneRpg.showcase,
-          url: 'https://onerpg.net/',
+          title: data.boutiqueStays.demo,
+          url: 'https://booking-app-five-theta.vercel.app/',
           variant: 'outline',
-          icon: 'Showcase',
+          icon: 'Demo',
         },
       ],
     },
@@ -51,6 +36,35 @@ export const getCards = (locale: Locale): CardProps[] => {
           url: 'https://boscho.vercel.app/',
           variant: 'outline',
           icon: 'Demo',
+        },
+      ],
+    },
+    {
+      title: data.hiddenRp.title,
+      description: data.hiddenRp.description,
+      technologies: ['Lua', 'Svelte', 'MariaDB'],
+      thumbnail: 'thumbnails/hiddenrp.webp',
+      links: [
+        {
+          title: data.hiddenRp.showcase,
+          url: 'https://youtu.be/_NeYUP1XY5Q?si=JVmGAz_FZvDZ_oua',
+          variant: 'outline',
+          icon: 'Showcase',
+        },
+      ],
+    },
+    {
+      title: data.oneRpg.title,
+      description: data.oneRpg.description,
+      technologies: ['Lua', 'Svelte', 'MariaDB', 'React'],
+      thumbnail: 'thumbnails/onerpg.webp',
+      showFullThumbnail: true,
+      links: [
+        {
+          title: data.oneRpg.showcase,
+          url: 'https://onerpg.net/',
+          variant: 'outline',
+          icon: 'Showcase',
         },
       ],
     },

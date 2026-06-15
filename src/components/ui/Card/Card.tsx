@@ -13,11 +13,11 @@ export const Card: React.FC<{project: CardProps, cardIndex: number}> = ({project
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, transform: 'translateY(2rem)' }}
       whileInView={{ opacity: 1, transform: 'translateY(0)' }}
-      viewport={{ 
-          once: true, 
+      viewport={{
+          once: true,
           amount: 0.5
       }}
       transition={{ duration: 0.5, delay: cardIndex / 5 }}
