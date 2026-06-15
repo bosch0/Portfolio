@@ -32,3 +32,4 @@ export { LayersIcon } from "./LayersIcon";
 export { NextJSIcon } from "./NextJSIcon";
 export { SupabaseIcon } from "./SupabaseIcon";
 export { StripeIcon } from "./StripeIcon";
+export { SlidersIcon } from "./SlidersIcon";

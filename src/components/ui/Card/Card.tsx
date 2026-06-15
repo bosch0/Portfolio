@@ -23,7 +23,7 @@ export const Card: React.FC<{project: CardProps, cardIndex: number}> = ({project
       transition={{ duration: 0.5, delay: cardIndex / 5 }}
       className={`flex flex-col w-full gap-5 bg-linear-to-br from-stone-400/50 to-stone-200/50 dark:from-stone-950/50 dark:to-stone-900/50 rounded-xl ring-1 dark:ring-stone-700/20 ring-stone-950/10 shadow-md p-6 xl:w-[calc(33.333%-1rem)]`}
     >
-      <h2 className='text-center truncate font-light! tracking-widest'>{project.title}</h2>
+      <h2 className='text-center truncate font-light! tracking-widest pb-2'>{project.title}</h2>
       <img
         className={project.showFullThumbnail
           ? 'rounded-xl w-full h-auto max-h-62 object-contain'
