@@ -55,6 +55,13 @@ export const translations = {
           'In development. Full-stack vacation rental platform with real-time availability, Stripe checkout, transactional email via Resend, and i18n in three languages. Built with Next.js 16 App Router, Supabase PostgreSQL with Row Level Security, and React Email for confirmation templates.',
         demo: 'Preview',
       },
+      mdConverter: {
+        title: 'MD Converter',
+        description:
+          'Converts PDF and DOCX files into clean, structured Markdown entirely in the browser, no backend, no uploads. Smart text normalization reconstructs headings and lists, a custom Turndown rule renders real Markdown tables from DOCX, and SSR pre-rendering ships SEO-ready metadata out of the box.',
+        github: 'GitHub',
+        demo: 'Demo',
+      },
       hiddenRp: {
         title: 'Hidden RP',
         description:
@@ -153,6 +160,13 @@ export const translations = {
         description:
           'En desarrollo. Plataforma full-stack de alquiler vacacional con disponibilidad en tiempo real, pago con Stripe, email transaccional vía Resend e i18n en tres idiomas. Construida con Next.js 16 App Router, Supabase PostgreSQL con Row Level Security y React Email para las plantillas de confirmación.',
         demo: 'Vista Previa',
+      },
+      mdConverter: {
+        title: 'MD Converter',
+        description:
+          'Convierte archivos PDF y DOCX en Markdown limpio y estructurado, totalmente en el navegador, sin backend ni subidas. La normalización inteligente de texto reconstruye títulos y listas, una regla personalizada de Turndown genera tablas Markdown reales desde DOCX, y el pre-renderizado SSR aporta metadatos listos para SEO de fábrica.',
+        github: 'GitHub',
+        demo: 'Demo',
       },
       hiddenRp: {
         title: 'Hidden RP',

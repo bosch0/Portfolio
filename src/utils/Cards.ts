@@ -40,6 +40,25 @@ export const getCards = (locale: Locale): CardProps[] => {
       ],
     },
     {
+      title: data.mdConverter.title,
+      description: data.mdConverter.description,
+      technologies: ['Svelte', 'TypeScript', 'Vite', 'Tailwind'],
+      thumbnail: 'thumbnails/md-converter.webp',
+      links: [
+        {
+          title: data.mdConverter.github,
+          url: 'https://github.com/bosch0/.MD-Converter',
+          icon: 'GitHub',
+        },
+        {
+          title: data.mdConverter.demo,
+          url: 'https://md-converter-phi.vercel.app/',
+          variant: 'outline',
+          icon: 'Demo',
+        },
+      ],
+    },
+    {
       title: data.hiddenRp.title,
       description: data.hiddenRp.description,
       technologies: ['Lua', 'Svelte', 'MariaDB'],
