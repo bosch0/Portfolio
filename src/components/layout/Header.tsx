@@ -69,6 +69,14 @@ export const Header: React.FC = () => {
                     <div className="xl:w-1/3 flex justify-end items-center gap-2 shrink-0">
                         {/* Desktop controls */}
                         <div className="hidden xl:flex items-center gap-2">
+                            <a
+                                href="https://store.boscho.tech"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-linear-to-br from-orange-400 to-orange-700 hover:to-orange-400 text-white ring-inset ring-3 dark:ring-stone-50/20 ring-stone-900/8 xl:px-4 xl:py-2 p-2 text-base rounded-2xl transition-colors font-medium whitespace-nowrap"
+                            >
+                                {t.store.cta}
+                            </a>
                             {localeButtons}
                         </div>
                         <div className="hidden xl:block">
@@ -94,6 +102,15 @@ export const Header: React.FC = () => {
 
                             {isOpen && (
                                 <div className="absolute right-0 top-full mt-2 bg-white/95 dark:bg-stone-900/95 backdrop-blur-sm shadow-lg rounded-xl p-3 flex flex-col gap-2 border border-stone-200 dark:border-stone-700 min-w-max">
+                                    <a
+                                        href="https://store.boscho.tech"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-linear-to-br from-orange-400 to-orange-700 hover:to-orange-400 text-white ring-inset ring-3 dark:ring-stone-50/20 ring-stone-900/8 p-2 text-base rounded-2xl transition-colors font-medium text-center"
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {t.store.cta}
+                                    </a>
                                     <div className="flex items-center gap-2">
                                         {localeButtons}
                                     </div>

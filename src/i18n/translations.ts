@@ -9,6 +9,9 @@ export const translations = {
     theme: {
       toggle: 'Toggle color theme',
     },
+    store: {
+      cta: 'Scripts Store',
+    },
     home: {
       greeting: 'Hey There!',
       intro: "I'm Bosch.",
@@ -114,6 +117,9 @@ export const translations = {
     },
     theme: {
       toggle: 'Cambiar tema del sitio',
+    },
+    store: {
+      cta: 'Tienda de Scripts',
     },
     home: {
       greeting: '¡Hola!',
