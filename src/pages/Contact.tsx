@@ -1,80 +1,75 @@
-import React from "react";
-import { Section } from "../components/ui/Section";
-import { CONTACT_INFO } from "../constants";
-import { Button } from "../components/ui";
-import { GitHubIcon, DiscordIcon, LinkedInIcon, MailIcon, ArrowIcon } from "../components/icons";
-import { motion } from "motion/react";
-import { useLocale } from "../hooks";
+import React from 'react';
+import { useCopy, useGridSnap, useLocale } from '../hooks';
+import { CV_URLS, LINKS, PROFILE } from '../constants';
+import { Button, Path, Reveal } from '../components/ui';
+import { DownloadIcon, GitHubIcon, LinkedInIcon } from '../components/icons';
 
 export const Contact: React.FC = () => {
-  const { t } = useLocale();
-
-  const icons: { [key: string]: React.ReactNode } = {
-      GitHub: <GitHubIcon className="fill-[#181717]" />,
-      Discord: <DiscordIcon className="fill-[#5865F2]" />,
-      Mail: <MailIcon className="fill-orange-400" />,
-      MailIcon: <MailIcon className="fill-neutral-100/90" />,
-      LinkedIn: <LinkedInIcon className="fill-[#0A66C2]" />,
-      Arrow: <ArrowIcon className="dark:stroke-[#ffffff] stroke-[#000000]"/>,
-  };
+  const { t, locale } = useLocale();
+  const { copied, copy } = useCopy();
+  const ref = useGridSnap<HTMLElement>();
 
   return (
-    <Section id="contact" title={t.contact.title} className="flex-col bg-linear-to-b dark:from-orange-600/20 from-orange-600/60 to-transparent animate-[backgroundEnter_2s_ease-in-out]">
-      <motion.div 
-        initial={{ opacity: 0, transform: 'translateY(-2rem)' }}
-        whileInView={{ opacity: 1, transform: 'translateY(0)' }}
-        viewport={{ 
-            once: true, 
-            amount: 0.2
-        }}
-        transition={{ duration: 0.5 }}
-        className="flex xl:flex-row flex-col xl:gap-10 gap-5 justify-between w-full z-1 xl:p-10 p-5">
-        <div className="flex flex-col flex-1 gap-5 justify-between">
-          <h3 className="flex items-center xl:justify-start justify-center w-full gap-3 pb-1 xl:text-4xl! text-3xl!">
-            <div className="xl:w-8 w-6">
-              {icons["Arrow"]}
-            </div>
-            {t.contact.socialTitle}
-          </h3>
-          <p className="xl:text-lg! flex-1 xl:text-balance! xl:text-left text-center">{t.contact.socialDescription}</p>
-          <div className="flex gap-3 xl:justify-start justify-between flex-wrap">
-            {Object.entries(CONTACT_INFO).map(([platform, url]) => (
-              <a 
-                key={platform}
-                href={url}
-                className="xl:flex-0 flex-1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button variant="secondary" className='flex w-full items-center justify-center xl:gap-3 gap-2'>
-                  <div className="min-w-8 h-8">
-                      {icons[platform]}
-                  </div>
-                  {platform}
-                </Button>
+    <section id="contact" ref={ref} className="pad-section scroll-mt-16 border-t border-border bg-grid">
+      <div className="wrap">
+        <Reveal className="relative overflow-hidden rounded-lg border border-border bg-surface p-[clamp(28px,5vw,56px)] text-center shadow-card before:pointer-events-none before:absolute before:inset-x-[-10%] before:-bottom-[60%] before:h-[80%] before:bg-[radial-gradient(ellipse_at_50%_100%,var(--accent-glow)_0%,transparent_60%)] before:content-['']">
+          <div className="relative">
+            <Path className="mb-3.5 block">{t.contact.path}</Path>
+            <h2 className="mb-4 font-display text-[clamp(36px,6vw,64px)] font-bold leading-[1.05] tracking-[-0.03em] text-balance">
+              {t.contact.title}
+            </h2>
+            <p className="mx-auto mb-[26px] max-w-[56ch] text-[17px] text-muted">{t.contact.lead}</p>
+
+            <div className="mb-[18px] inline-flex max-w-full items-stretch overflow-hidden rounded-md border border-border-strong font-mono text-[15px]">
+              <a href={LINKS.mail} className="bg-surface-2 px-4 py-[11px] text-fg wrap-anywhere hover:text-accent">
+                {PROFILE.email}
               </a>
-            ))}
-          </div>
-        </div>
-        <div className="xl:w-1 xl:h-auto w-auto h-1 xl:bg-linear-to-b bg-linear-to-r from-transparent to-transparent via-stone-50/10"></div>
-        <div className="flex flex-col flex-1 gap-5 items-center justify-between">
-          <h3 className="flex items-center xl:justify-start justify-center text-center w-full gap-3 pb-1 xl:text-4xl! text-lg!">
-            <div className="xl:w-8 w-6">
-              {icons["Arrow"]}
+              <button
+                type="button"
+                onClick={() => copy(PROFILE.email)}
+                className={`border-l border-border-strong px-3.5 font-mono text-[12.5px] whitespace-nowrap transition-colors hover:cursor-pointer ${
+                  copied ? 'text-ok' : 'text-muted hover:text-accent'
+                }`}
+                aria-live="polite"
+              >
+                {copied ? t.contact.copied : t.contact.copy}
+              </button>
             </div>
-            {t.contact.partnershipTitle}
-          </h3>
-          <p className="xl:text-lg! flex-1 xl:text-balance! xl:text-left text-center">{t.contact.partnershipDescription}</p>
-          <a className="xl:w-auto w-full" href="mailto:ibdh07@gmail.com">
-            <Button className='flex items-center justify-center w-full py-3 gap-3'>
-              <div className="xl:block hidden min-w-8 h-8">
-                  {icons["MailIcon"]}
-              </div>
-              <div>{t.contact.emailCta} <span className="bg-stone-900/50 rounded-lg py-1 px-2">{t.contact.email}</span></div>
-            </Button>
-          </a>
-        </div>
-      </motion.div>
-    </Section>
+
+            <div className="flex flex-wrap justify-center gap-2.5">
+              <Button href={LINKS.linkedin} variant="secondary" target="_blank" rel="noopener noreferrer">
+                <LinkedInIcon className="fill-current" />
+                LinkedIn
+              </Button>
+              <Button href={LINKS.github} variant="secondary" target="_blank" rel="noopener noreferrer">
+                <GitHubIcon className="fill-current" />
+                GitHub
+              </Button>
+              <Button href={CV_URLS[locale]}>
+                <DownloadIcon />
+                {t.contact.cv}
+              </Button>
+            </div>
+
+            <p className="mt-[26px] font-mono text-[12.5px] text-faint">{t.contact.note}</p>
+
+            {/* What a tutor needs to say yes: degree, school, dates, mode, paperwork. */}
+            <div className="mx-auto mt-8 max-w-[640px] rounded-md border border-border bg-surface-2/60 px-5 py-4 text-left">
+              <h3 className="mb-3 font-mono text-[12.5px] font-semibold tracking-[0.08em] text-faint uppercase">
+                {t.contact.company.title}
+              </h3>
+              <dl className="m-0 grid gap-x-5 gap-y-1.5 text-[14px] sm:grid-cols-[max-content_1fr]">
+                {t.contact.company.rows.map((row) => (
+                  <React.Fragment key={row.k}>
+                    <dt className="font-mono text-[12.5px] text-accent after:content-[':'] sm:pt-[3px]">{row.k}</dt>
+                    <dd className="m-0 mb-1 text-fg sm:mb-0">{row.v}</dd>
+                  </React.Fragment>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
   );
 };

@@ -25,3 +25,7 @@ dist-ssr
 /.github
 /agents
 pnpm-lock.yaml
+/scripts
+
+# Local AI guidance, not for the public repo
+CLAUDE.md

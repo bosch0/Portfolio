@@ -1,4 +1,12 @@
 export { Button } from './Button';
-export { Card } from './Card/Card';
-export { Section } from './Section';
-export { TimeLine } from './TimeLine';
+export { Section, Path } from './Section';
+export { Reveal } from './Reveal';
+export { Chip, ChipList } from './Chip';
+export { Pill } from './Pill';
+export { Avatar } from './Avatar';
+export { TerminalCard } from './TerminalCard';
+export { ProjectCard, CompactProjectCard, ProjectLinkButton } from './ProjectCard';
+export { FeaturedProject } from './FeaturedProject';
+export { Timeline } from './Timeline';
+export { TechIcon } from './TechIcon';
+export { ZoomableImage } from './ZoomableImage';

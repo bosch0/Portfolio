@@ -1,91 +1,157 @@
 @import "tailwindcss";
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/instrument-sans";
+@import "@fontsource-variable/jetbrains-mono";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
-html {
-    @apply scroll-smooth bg-linear-to-br from-white to-orange-50;
+/* ---------- design tokens (light) ---------- */
+:root {
+  --bg: #faf7f2;
+  --surface: #ffffff;
+  --surface-2: #f3eee7;
+  --border: #e6ddd2;
+  --border-strong: #d4c9bb;
+  --fg: #1a1613;
+  --muted: #6b625a;
+  --faint: #9a8f84;
+  --accent: #e8620a;
+  --accent-hover: #ff7a1a;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(232, 98, 10, 0.1);
+  --accent-glow: rgba(232, 98, 10, 0.14);
+  --ok: #1f9d55;
+  --grid-line: rgba(0, 0, 0, 0.045);
+  --shadow-card: 0 1px 2px rgba(26, 22, 19, 0.05), 0 12px 32px -20px rgba(26, 22, 19, 0.25);
+  color-scheme: light;
 }
 
-.dark html {
-    background-color: #0c0a09;
+/* ---------- design tokens (dark) ---------- */
+.dark {
+  --bg: #0b0a09;
+  --surface: #141110;
+  --surface-2: #1c1815;
+  --border: #2b2521;
+  --border-strong: #3a332d;
+  --fg: #f2ece4;
+  --muted: #a1978c;
+  --faint: #6e655c;
+  --accent: #ff7a1a;
+  --accent-hover: #ff9440;
+  --accent-ink: #1a0d02;
+  --accent-soft: rgba(255, 122, 26, 0.12);
+  --accent-glow: rgba(255, 122, 26, 0.18);
+  --ok: #4ade80;
+  --grid-line: rgba(255, 255, 255, 0.035);
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 12px 32px -16px rgba(0, 0, 0, 0.7);
+  color-scheme: dark;
+}
+
+/* ---------- expose tokens to Tailwind utilities ---------- */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-glow: var(--accent-glow);
+  --color-ok: var(--ok);
+
+  --font-display: "Bricolage Grotesque Variable", "Instrument Sans Variable", system-ui, sans-serif;
+  --font-body: "Instrument Sans Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --shadow-card: var(--shadow-card);
+}
+
+/* ---------- base ---------- */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
 }
 
 body {
-    @apply bg-linear-to-br from-white to-orange-50 dark:from-stone-950 dark:to-stone-900 transition-colors;
-    min-height: 100vh;
-    min-height: 100dvh;
+  margin: 0;
+  min-height: 100dvh;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-h1 {
-    @apply xl:text-8xl md:text-7xl text-5xl text-left font-bold bg-linear-to-r from-orange-400 to-orange-500 bg-clip-text text-transparent xl:py-4 py-2 drop-shadow-sm drop-shadow-stone-300/30 dark:drop-shadow-md dark:drop-shadow-stone-950/50;
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-h2 {
-    @apply md:text-5xl text-3xl font-medium bg-linear-to-r from-stone-950 to-stone-900 dark:from-stone-100 dark:to-stone-50 bg-clip-text text-transparent;
+/* ---------- background grid ----------
+   Painted per block (header, sections, footer) from each block's own top edge,
+   so every full-width divider sits exactly on a grid line. `useGridSnap` pads
+   each block to a multiple of --grid-step so no partial row appears above a divider. */
+:root {
+  --grid-step: 40px;
 }
 
-h3 {
-    @apply xl:text-4xl text-3xl font-light tracking-widest bg-linear-to-r from-stone-950 to-stone-900 dark:from-stone-100 dark:to-stone-50 bg-clip-text text-transparent;
+@utility bg-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--grid-step) var(--grid-step);
+  background-origin: border-box;
 }
 
-h4 {
-    @apply xl:text-2xl text-lg font-medium text-stone-800 dark:text-stone-300;
+/* Block paddings whose bottom grows by --snap (set by useGridSnap) */
+.pad-section {
+  padding-block: 3.5rem calc(3.5rem + var(--snap, 0px));
 }
-
-p {
-    @apply text-sm dark:text-neutral-500 text-neutral-900 text-pretty;
+.pad-hero-top {
+  padding-block: clamp(56px, 9vw, 104px) calc(24px + var(--snap, 0px));
 }
-
-@supports (padding-top: env(safe-area-inset-top)) {
-    html {
-        background-color: #0c0a09;
-    }
-    
-    body {
-        padding-top: env(safe-area-inset-top);
-        padding-bottom: env(safe-area-inset-bottom);
-    }
+.pad-hero-bottom {
+  padding-bottom: calc(clamp(40px, 6vw, 72px) + var(--snap, 0px));
 }
-
-@keyframes backgroundEnterTop {
-    from {
-        opacity: 0;
-        transform: translateY(-10vh);
-    }
-}
-
-@keyframes backgroundEnter {
-    from {
-        opacity: 0;
-    }
-}
-
-@keyframes enterLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-5vw);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes enterRight {
-    from {
-        opacity: 0;
-        transform: translateX(5vw);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes infiniteCarousel {
-  0% {
-    transform: translateX(0);
+@media (min-width: 48rem) {
+  .pad-section {
+    padding-block: 4.5rem calc(4.5rem + var(--snap, 0px));
   }
-  100% {
-    transform: translateX(-100%);
+  .pad-hero-top {
+    padding-block: clamp(56px, 9vw, 104px) calc(40px + var(--snap, 0px));
+  }
+}
+
+/* ---------- utilities ---------- */
+@utility wrap {
+  margin-inline: auto;
+  max-width: 1120px;
+  padding-inline: clamp(16px, 4vw, 40px);
+}
+
+/* ---------- keyframes ---------- */
+@keyframes caret-blink {
+  to { visibility: hidden; }
+}
+
+@keyframes status-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ok) 55%, transparent); }
+  70% { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -1,129 +1,85 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NAVIGATION } from '../../constants';
-import { useTheme, useLocale } from '../../hooks';
-import { LOCALE_ICONS, SUPPORTED_LOCALES, getLocaleLabel } from '../../i18n/config';
-import { Button } from '../ui';
-import { SpainFlagIcon, UkFlagIcon, SlidersIcon } from '../icons';
+import { useActiveSection, useLocale } from '../../hooks';
+import { LangSwitch } from './LangSwitch';
+import { ThemeToggle, iconButtonClass } from './ThemeToggle';
+import { MenuIcon, CloseIcon } from '../icons';
+
+export const Brand: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <a href="#home" className={`inline-flex items-center gap-2 font-mono text-[15px] font-semibold tracking-[-0.01em] ${className}`}>
+    <span className="size-2 rounded-full bg-accent shadow-[0_0_0_4px_var(--accent-soft)]" aria-hidden="true" />
+    ~/boscho
+  </a>
+);
 
 export const Header: React.FC = () => {
-    const { locale, setLocale, t } = useLocale();
-    const { isDark, toggleTheme } = useTheme();
-    const [isOpen, setIsOpen] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
+  const { t } = useLocale();
+  const active = useActiveSection(NAVIGATION);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
 
-    useEffect(() => {
-        const handleClickOutside = (e: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-                setIsOpen(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
 
-    const localeButtons = SUPPORTED_LOCALES.map((supportedLocale) => {
-        const flagIcon = LOCALE_ICONS[supportedLocale];
-        const FlagIcon = flagIcon === 'uk' ? UkFlagIcon : flagIcon === 'spain' ? SpainFlagIcon : null;
-        const label = getLocaleLabel(supportedLocale, locale);
+  return (
+    <header className="sticky top-0 z-50 border-b border-border bg-bg/80 bg-grid backdrop-blur-md">
+      <div className="wrap flex h-15 items-center gap-6">
+        <Brand />
 
-        return (
-            <Button
-                key={supportedLocale}
-                variant={locale === supportedLocale ? 'primary' : 'outline'}
-                size="md"
-                onClick={() => { setLocale(supportedLocale); setIsOpen(false); }}
-                aria-label={label}
-                title={label}
-            >
-                {FlagIcon ? (
-                    <FlagIcon className="h-6 w-6 shrink-0" />
-                ) : (
-                    <span className="text-xs font-semibold uppercase">{supportedLocale}</span>
-                )}
-            </Button>
-        );
-    });
+        <nav
+          id="site-nav"
+          aria-label={t.meta.menu}
+          className={`${open ? 'flex' : 'hidden'} absolute inset-x-0 top-15 flex-col gap-0.5 border-b border-border bg-surface px-[clamp(16px,4vw,40px)] pt-3 pb-4 md:static md:mx-auto md:flex md:flex-row md:gap-1 md:border-0 md:bg-transparent md:p-0`}
+        >
+          {NAVIGATION.map((id) => {
+            const isActive = active === id;
+            return (
+              <a
+                key={id}
+                href={`#${id}`}
+                onClick={close}
+                aria-current={isActive ? 'true' : undefined}
+                className={`relative rounded-md px-3 py-2.5 text-base font-medium transition-colors md:py-1.5 md:text-[14.5px] ${
+                  isActive
+                    ? 'text-accent md:text-fg md:after:absolute md:after:right-3 md:after:bottom-0.5 md:after:left-3 md:after:h-0.5 md:after:rounded-full md:after:bg-accent md:after:content-[""]'
+                    : 'text-muted hover:text-fg'
+                }`}
+              >
+                {t.nav[id]}
+              </a>
+            );
+          })}
+          <div className="mt-2 flex items-center gap-2.5 border-t border-border pt-3 md:hidden">
+            <LangSwitch onChange={close} />
+            <ThemeToggle onChange={close} />
+          </div>
+        </nav>
 
-    return (
-        <header className="bg-white/60 dark:bg-black/10 shadow-md fixed w-full backdrop-blur-sm z-50">
-            <nav className="px-4 sm:px-6 xl:px-8">
-                <div className="flex items-center gap-3 h-16">
-                    <div className="xl:block w-1/3 hidden">
-                        <span className="xl:text-xl font-bold drop-shadow-sm dark:drop-shadow-lg dark:drop-shadow-stone-50/10 dark:text-stone-50 text-stone-900 transition-colors">
-                            {"< bosch0 />"}
-                        </span>
-                    </div>
-
-                    <div className="xl:w-1/3 flex-1 flex justify-evenly gap-2 text-sm sm:text-base">
-                        {NAVIGATION.map((element: string) => (
-                            <a
-                                key={element}
-                                href={`#${element}`}
-                                className="text-stone-700 hover:text-stone-900 dark:text-stone-300 dark:hover:text-stone-50 rounded-md font-medium transition-colors"
-                            >
-                                {t.navigation[element as keyof typeof t.navigation]}
-                            </a>
-                        ))}
-                    </div>
-
-                    <div className="xl:w-1/3 flex justify-end items-center gap-2 shrink-0">
-                        {/* Desktop controls */}
-                        <div className="hidden xl:flex items-center gap-2">
-                            <a
-                                href="https://store.boscho.tech"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-linear-to-br from-orange-400 to-orange-700 hover:to-orange-400 text-white ring-inset ring-3 dark:ring-stone-50/20 ring-stone-900/8 xl:px-4 xl:py-2 p-2 text-base rounded-2xl transition-colors font-medium whitespace-nowrap"
-                            >
-                                {t.store.cta}
-                            </a>
-                            {localeButtons}
-                        </div>
-                        <div className="hidden xl:block">
-                            <Button variant='outline' size="md" onClick={toggleTheme}>
-                                <span>{isDark ? '🌙' : '☀️'}</span>
-                                <div className="xl:inline-block hidden">
-                                    <span className='ml-2.5'>{t.theme.toggle}</span>
-                                </div>
-                            </Button>
-                        </div>
-
-                        {/* Mobile dropdown trigger */}
-                        <div className="xl:hidden relative" ref={dropdownRef}>
-                            <Button
-                                variant='outline'
-                                size="md"
-                                onClick={() => setIsOpen((prev) => !prev)}
-                                aria-label="Settings"
-                                aria-expanded={isOpen}
-                            >
-                                <SlidersIcon className="h-5 w-5" />
-                            </Button>
-
-                            {isOpen && (
-                                <div className="absolute right-0 top-full mt-2 bg-white/95 dark:bg-stone-900/95 backdrop-blur-sm shadow-lg rounded-xl p-3 flex flex-col gap-2 border border-stone-200 dark:border-stone-700 min-w-max">
-                                    <a
-                                        href="https://store.boscho.tech"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="bg-linear-to-br from-orange-400 to-orange-700 hover:to-orange-400 text-white ring-inset ring-3 dark:ring-stone-50/20 ring-stone-900/8 p-2 text-base rounded-2xl transition-colors font-medium text-center"
-                                        onClick={() => setIsOpen(false)}
-                                    >
-                                        {t.store.cta}
-                                    </a>
-                                    <div className="flex items-center gap-2">
-                                        {localeButtons}
-                                    </div>
-                                    <Button variant='outline' size="md" onClick={() => { toggleTheme(); setIsOpen(false); }}>
-                                        <span>{isDark ? '🌙' : '☀️'}</span>
-                                        <span className='ml-2.5'>{t.theme.toggle}</span>
-                                    </Button>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </header>
-    );
+        <div className="ml-auto flex items-center gap-2.5">
+          <div className="hidden md:block">
+            <LangSwitch />
+          </div>
+          <div className="hidden md:block">
+            <ThemeToggle />
+          </div>
+          <button
+            type="button"
+            className={`${iconButtonClass} md:hidden`}
+            aria-label={t.meta.menu}
+            aria-expanded={open}
+            aria-controls="site-nav"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <CloseIcon /> : <MenuIcon />}
+          </button>
+        </div>
+      </div>
+    </header>
+  );
 };

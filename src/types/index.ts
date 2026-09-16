@@ -1,37 +1,60 @@
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 
-export interface TimeLineItem {
-  title: string;
-  icon: string;
-  description: string;
-}
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+export type ButtonSize = 'sm' | 'md';
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonBase {
   children: ReactNode;
-  variant?: "primary" | "secondary" | "outline";
-  size?: "sm" | "md" | "lg";
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   className?: string;
 }
 
+export type ButtonProps = ButtonBase &
+  (
+    | ({ href: string } & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'className' | 'children'>)
+    | ({ href?: undefined } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'children'>)
+  );
+
 export interface SectionProps {
   id: string;
-  title?: string;
+  path: string;
+  title: string;
+  intro?: string;
   children?: ReactNode;
   className?: string;
 }
 
-interface Link {
-  title: string;
+export type ProjectKind = 'web' | 'store' | 'fivem';
+export type LinkIcon = 'code' | 'external';
+
+export interface ProjectLink {
+  label: string;
   url: string;
-  variant?: "primary" | "secondary" | "outline";
-  icon?: string;
+  icon: LinkIcon;
+  primary?: boolean;
 }
 
-export interface CardProps {
+export interface Project {
+  id: string;
   title: string;
   description: string;
-  technologies: string[];
+  year: number;
+  /** Shown instead of `year` when the project spans several years (e.g. "2022 – 2024"). */
+  period?: string;
+  kind: ProjectKind;
+  inDevelopment?: boolean;
+  /** Source is not public (client work); the card explains it instead of linking to a repo. */
+  closedSource?: boolean;
   thumbnail: string;
-  showFullThumbnail?: boolean;
-  links: Link[];
+  thumbnailFit?: 'cover' | 'contain';
+  tech: string[];
+  links: ProjectLink[];
+  features?: string[];
+}
+
+export interface TimelineItem {
+  period: string;
+  text: string;
+  current?: boolean;
 }

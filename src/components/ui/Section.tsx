@@ -1,40 +1,29 @@
-import React from "react";
-import type { SectionProps } from "../../types";
-import { motion } from "motion/react"
+import React from 'react';
+import type { SectionProps } from '../../types';
+import { useGridSnap } from '../../hooks';
+import { Reveal } from './Reveal';
 
-export const Section: React.FC<SectionProps> = ({
-    id, 
-    title,
-    children, 
-    className 
-}) => {
-    const Title = () => {
-        return (
-            <motion.div
-                initial={{ opacity: 0, transform: 'translateY(-2rem)' }}
-                whileInView={{ opacity: 1, transform: 'translateY(0)' }}
-                viewport={{ 
-                    once: true, 
-                    amount: "all",
-                    margin: "0px 0px -100px 0px"
-                }}
-                transition={{ duration: 0.5 }}
-            >
-                <div className="w-full flex justify-center items-center mb-2 relative">
-                <h1 className="z-1">{title}</h1>
-                <h1 className="absolute xl:-translate-y-2 tracking-widest text-nowrap opacity-20 blur-sm xl:text-9xl text-5xl">{title}</h1>
-                </div>
-            </motion.div>
-        );
-    }
+export const Path: React.FC<{ children: string; className?: string }> = ({ children, className = '' }) => (
+  <span className={`font-mono text-[13px] text-accent before:text-faint before:content-['$_cd_'] ${className}`}>
+    {children}
+  </span>
+);
 
-    return (
-        <section 
-            id={id}
-            className={`relative py-16 xl:px-20 px-7 min-h-screen h-auto flex items-center justify-center dark:text-stone-50 text-stone-950 transition-colors ${className}`}
-        >
-            {title && <Title />}
-            {children}
-        </section>
-    );
+export const Section: React.FC<SectionProps> = ({ id, path, title, intro, children, className = '' }) => {
+  const ref = useGridSnap<HTMLElement>();
+
+  return (
+  <section id={id} ref={ref} className={`pad-section scroll-mt-16 border-t border-border bg-grid ${className}`}>
+    <div className="wrap">
+      <Reveal className="mb-9 flex flex-wrap items-baseline gap-x-6 gap-y-1.5">
+        <Path>{path}</Path>
+        <h2 className="basis-full font-display text-[clamp(30px,4vw,44px)] font-bold leading-[1.05] tracking-[-0.03em] text-balance">
+          {title}
+        </h2>
+        {intro && <p className="m-0 max-w-[60ch] text-muted">{intro}</p>}
+      </Reveal>
+      {children}
+    </div>
+  </section>
+  );
 };

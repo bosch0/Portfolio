@@ -1,15 +1,9 @@
 import { translations, type Locale } from './translations';
 
-export const FALLBACK_LOCALE: Locale = 'en';
+/** Spanish first: the main audience is companies in Granada. */
+export const FALLBACK_LOCALE: Locale = 'es';
 
 export const SUPPORTED_LOCALES = Object.keys(translations) as Locale[];
-
-type LocaleIcon = 'uk' | 'spain';
-
-export const LOCALE_ICONS: Partial<Record<Locale, LocaleIcon>> = {
-  en: 'uk',
-  es: 'spain',
-};
 
 const normalizeLocale = (value: string) => value.toLowerCase();
 
