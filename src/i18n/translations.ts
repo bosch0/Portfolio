@@ -8,7 +8,7 @@ export const translations = {
       menu: 'Menú',
       theme: 'Cambiar tema',
       language: 'Idioma',
-      summary: 'Resumen de experiencia',
+      summary: 'Trayectoria y disponibilidad',
       zoom: 'Ampliar imagen',
       close: 'Cerrar',
     },
@@ -27,38 +27,29 @@ export const translations = {
       ctaProjects: 'Ver proyectos',
       ctaCv: 'Descargar CV',
       stats: ['programando desde 2021', 'prácticas en NaturalSoft · 2026', 'inglés C1 · francés básico'],
-      term: {
-        window: 'ivan@boscho — zsh',
-        command: 'cat experiencia.json',
-        entries: [
+      card: {
+        title: 'Trayectoria',
+        range: '2022 → 2027',
+        /** Chronological; the last item is the open slot a company can fill and is highlighted. */
+        items: [
           {
-            key: 'naturalsoft',
-            rows: [
-              { k: 'rol', v: '"becario · software médico"', kind: 'str' },
-              { k: 'cuándo', v: '"mayo 2026 · Granada"', kind: 'str' },
-              {
-                k: 'hice',
-                v: '"migración de datos clínicos a producción, modelo dimensional para Power BI, UI de paneles"',
-                kind: 'str',
-              },
-              { k: 'stack', v: 'Velneo, SQL, Power BI, Java', kind: 'list' },
-            ],
+            period: '2022',
+            title: 'Freelance',
+            text: 'Lead de equipos de 3-5 para clientes de EE.UU., Reino Unido y Rumanía.',
+            stack: ['Lua', 'Svelte', 'React', 'Node.js'],
+          },
+          { period: '2025', title: 'EIG Granada', text: 'CFGS Desarrollo de Aplicaciones Web, 2º curso.', stack: [] },
+          {
+            period: 'may 26',
+            title: 'NaturalSoft',
+            text: 'Becario en software médico: datos clínicos a producción, modelo para Power BI, UI de paneles.',
+            stack: ['Velneo', 'SQL', 'Power BI'],
           },
           {
-            key: 'freelance',
-            rows: [
-              { k: 'rol', v: '"dev · lead de equipos de 3-5"', kind: 'str' },
-              { k: 'cuándo', v: '"2022 – hoy"', kind: 'str' },
-              { k: 'hice', v: '"sistemas en producción para clientes de EE.UU., Reino Unido y Rumanía"', kind: 'str' },
-              { k: 'stack', v: 'Lua, Svelte, React, Node.js', kind: 'list' },
-            ],
-          },
-          {
-            key: 'fct',
-            rows: [
-              { k: 'estado', v: 'open', kind: 'ok' },
-              { k: 'cuándo', v: '"15 feb – 4 jun 2027 · presencial o remoto"', kind: 'str' },
-            ],
+            period: 'feb 27',
+            title: '¿Tu empresa?',
+            text: 'Prácticas FCT del 15 feb al 4 jun 2027 · presencial en Granada o remoto.',
+            stack: [],
           },
         ],
       },
@@ -164,16 +155,6 @@ export const translations = {
       copied: 'copiado ✓',
       cv: 'Descargar CV (PDF)',
       note: '// suelo responder en menos de 24 h',
-      company: {
-        title: 'Datos para la empresa',
-        rows: [
-          { k: 'ciclo', v: 'CFGS Desarrollo de Aplicaciones Web · 2º curso' },
-          { k: 'centro', v: 'EIG · Granada' },
-          { k: 'periodo', v: '15 feb – 4 jun 2027' },
-          { k: 'modalidad', v: 'Presencial en Granada o remoto' },
-          { k: 'convenio', v: 'Acuerdo de FCT a través del centro educativo' },
-        ],
-      },
     },
     footer: {
       store: 'Tienda de scripts',
@@ -190,7 +171,7 @@ export const translations = {
       menu: 'Menu',
       theme: 'Toggle theme',
       language: 'Language',
-      summary: 'Experience summary',
+      summary: 'Timeline and availability',
       zoom: 'Enlarge image',
       close: 'Close',
     },
@@ -209,38 +190,34 @@ export const translations = {
       ctaProjects: 'View projects',
       ctaCv: 'Download CV',
       stats: ['coding since 2021', 'NaturalSoft internship · 2026', 'english C1 · basic french'],
-      term: {
-        window: 'ivan@boscho — zsh',
-        command: 'cat experience.json',
-        entries: [
+      card: {
+        title: 'Timeline',
+        range: '2022 → 2027',
+        /** Chronological; the last item is the open slot a company can fill and is highlighted. */
+        items: [
           {
-            key: 'naturalsoft',
-            rows: [
-              { k: 'role', v: '"intern · medical software"', kind: 'str' },
-              { k: 'when', v: '"May 2026 · Granada"', kind: 'str' },
-              {
-                k: 'did',
-                v: '"clinical data migration to production, dimensional model for Power BI, dashboard UI"',
-                kind: 'str',
-              },
-              { k: 'stack', v: 'Velneo, SQL, Power BI, Java', kind: 'list' },
-            ],
+            period: '2022',
+            title: 'Freelance',
+            text: 'Lead of 3-5 dev teams for clients in the US, UK and Romania.',
+            stack: ['Lua', 'Svelte', 'React', 'Node.js'],
           },
           {
-            key: 'freelance',
-            rows: [
-              { k: 'role', v: '"dev · lead of 3-5 dev teams"', kind: 'str' },
-              { k: 'when', v: '"2022 – today"', kind: 'str' },
-              { k: 'did', v: '"production systems for clients in the US, UK and Romania"', kind: 'str' },
-              { k: 'stack', v: 'Lua, Svelte, React, Node.js', kind: 'list' },
-            ],
+            period: '2025',
+            title: 'EIG Granada',
+            text: 'Higher degree in Web Application Development, 2nd year.',
+            stack: [],
           },
           {
-            key: 'internship',
-            rows: [
-              { k: 'status', v: 'open', kind: 'ok' },
-              { k: 'when', v: '"15 Feb – 4 Jun 2027 · on-site or remote"', kind: 'str' },
-            ],
+            period: 'May 26',
+            title: 'NaturalSoft',
+            text: 'Intern in medical software: clinical data to production, Power BI model, dashboard UI.',
+            stack: ['Velneo', 'SQL', 'Power BI'],
+          },
+          {
+            period: 'Feb 27',
+            title: 'Your company?',
+            text: 'Internship from 15 Feb to 4 Jun 2027 · on-site in Granada or remote.',
+            stack: [],
           },
         ],
       },
@@ -345,16 +322,6 @@ export const translations = {
       copied: 'copied ✓',
       cv: 'Download CV (PDF)',
       note: '// I usually reply within 24 h',
-      company: {
-        title: 'Details for companies',
-        rows: [
-          { k: 'degree', v: 'Higher degree in Web Application Development · 2nd year' },
-          { k: 'school', v: 'EIG · Granada, Spain' },
-          { k: 'period', v: '15 Feb – 4 Jun 2027' },
-          { k: 'mode', v: 'On-site in Granada or remote' },
-          { k: 'agreement', v: 'Internship agreement handled through the school' },
-        ],
-      },
     },
     footer: {
       store: 'Scripts store',

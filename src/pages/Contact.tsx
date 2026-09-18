@@ -52,21 +52,6 @@ export const Contact: React.FC = () => {
             </div>
 
             <p className="mt-[26px] font-mono text-[12.5px] text-faint">{t.contact.note}</p>
-
-            {/* What a tutor needs to say yes: degree, school, dates, mode, paperwork. */}
-            <div className="mx-auto mt-8 max-w-[640px] rounded-md border border-border bg-surface-2/60 px-5 py-4 text-left">
-              <h3 className="mb-3 font-mono text-[12.5px] font-semibold tracking-[0.08em] text-faint uppercase">
-                {t.contact.company.title}
-              </h3>
-              <dl className="m-0 grid gap-x-5 gap-y-1.5 text-[14px] sm:grid-cols-[max-content_1fr]">
-                {t.contact.company.rows.map((row) => (
-                  <React.Fragment key={row.k}>
-                    <dt className="font-mono text-[12.5px] text-accent after:content-[':'] sm:pt-[3px]">{row.k}</dt>
-                    <dd className="m-0 mb-1 text-fg sm:mb-0">{row.v}</dd>
-                  </React.Fragment>
-                ))}
-              </dl>
-            </div>
           </div>
         </Reveal>
       </div>

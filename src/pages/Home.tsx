@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGridSnap, useLocale } from '../hooks';
 import { CV_URLS, LINKS, PROFILE } from '../constants';
-import { Button, TerminalCard } from '../components/ui';
+import { Button, ExperienceCard } from '../components/ui';
 import { ArrowDownIcon, DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon } from '../components/icons';
 
 const socialClass =
@@ -59,7 +59,7 @@ export const Home: React.FC = () => {
           </div>
         </div>
 
-        <TerminalCard />
+        <ExperienceCard />
       </div>
 
       <div className="wrap relative">

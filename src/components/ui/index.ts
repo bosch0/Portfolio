@@ -4,7 +4,7 @@ export { Reveal } from './Reveal';
 export { Chip, ChipList } from './Chip';
 export { Pill } from './Pill';
 export { Avatar } from './Avatar';
-export { TerminalCard } from './TerminalCard';
+export { ExperienceCard } from './ExperienceCard';
 export { ProjectCard, CompactProjectCard, ProjectLinkButton } from './ProjectCard';
 export { FeaturedProject } from './FeaturedProject';
 export { Timeline } from './Timeline';
