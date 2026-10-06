@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost';
-export type ButtonSize = 'sm' | 'md';
+export type ButtonVariant = 'primary' | 'yellow' | 'card' | 'ghost' | 'light';
+export type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
 interface ButtonBase {
   children: ReactNode;
@@ -16,23 +16,16 @@ export type ButtonProps = ButtonBase &
     | ({ href?: undefined } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'children'>)
   );
 
-export interface SectionProps {
-  id: string;
-  path: string;
-  title: string;
-  intro?: string;
-  children?: ReactNode;
-  className?: string;
-}
-
 export type ProjectKind = 'web' | 'store' | 'fivem';
-export type LinkIcon = 'code' | 'external';
+export type ProjectStatus = 'developmentClient' | 'development' | 'demo' | 'openSource' | 'store' | 'production';
+/** Pastel block drawn behind a web project screenshot. */
+export type PosterTone = 'pink' | 'mint' | 'yellow';
 
 export interface ProjectLink {
   label: string;
   url: string;
-  icon: LinkIcon;
-  primary?: boolean;
+  /** `code` links to a repository, `external` to a live site or video. */
+  kind: 'code' | 'external';
 }
 
 export interface Project {
@@ -43,18 +36,14 @@ export interface Project {
   /** Shown instead of `year` when the project spans several years (e.g. "2022 – 2024"). */
   period?: string;
   kind: ProjectKind;
-  inDevelopment?: boolean;
-  /** Source is not public (client work); the card explains it instead of linking to a repo. */
-  closedSource?: boolean;
+  status: ProjectStatus;
   thumbnail: string;
-  thumbnailFit?: 'cover' | 'contain';
   tech: string[];
   links: ProjectLink[];
-  features?: string[];
-}
-
-export interface TimelineItem {
-  period: string;
-  text: string;
-  current?: boolean;
+  /** Web projects: text shown in the fake browser bar. */
+  host?: string;
+  /** Web projects: colour of the block behind the screenshot. */
+  tone?: PosterTone;
+  /** The link a click on the screenshot / card opens. */
+  mainLink: ProjectLink;
 }
