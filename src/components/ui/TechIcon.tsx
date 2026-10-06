@@ -7,6 +7,7 @@ const ICONS: Record<string, IconComponent> = {
   React: Icons.ReactIcon,
   'Next.js': Icons.NextJSIcon,
   Svelte: Icons.SvelteIcon,
+  Angular: Icons.AngularIcon,
   TypeScript: Icons.TypeScriptIcon,
   JavaScript: Icons.JavaScriptIcon,
   'Tailwind CSS': Icons.TailwindIcon,
