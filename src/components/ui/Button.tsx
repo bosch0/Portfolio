@@ -1,35 +1,48 @@
 import React from 'react';
-import type { ButtonProps } from '../../types';
+import type { ButtonProps, ButtonSize, ButtonVariant } from '../../types';
 
 const base =
-  'inline-flex items-center gap-2 rounded-md border font-semibold transition-[background-color,border-color,color,transform] duration-150 hover:cursor-pointer disabled:pointer-events-none disabled:opacity-60 [&_svg]:size-4 [&_svg]:shrink-0';
+  'inline-flex cursor-pointer items-center justify-center gap-2.5 rounded-full border-[2.5px] font-extrabold no-underline ' +
+  'transition-[translate,box-shadow,background-color] duration-150 ease-[ease] hover:translate-y-[3px] active:translate-y-[5px] active:shadow-none';
 
-const variants = {
-  primary: 'border-transparent bg-accent text-accent-ink hover:bg-accent-hover hover:-translate-y-px',
-  secondary: 'border-border-strong bg-surface text-fg hover:border-accent hover:text-accent',
-  ghost: 'border-transparent text-muted hover:text-accent',
-} as const;
+/** `--btn-sh` lets a variant recolour the offset shadow (default: the theme's shadow colour). */
+const variants: Record<ButtonVariant, string> = {
+  primary: 'border-line bg-blue text-white',
+  yellow: 'border-line bg-yellow text-ink',
+  card: 'border-line bg-card text-fg',
+  ghost: 'border-line bg-transparent text-fg',
+  light: 'border-white bg-transparent text-white [--btn-sh:#ffffff] hover:bg-white/10',
+};
 
-const sizes = {
-  sm: 'px-3 py-[7px] text-sm',
-  md: 'px-[18px] py-[11px] text-[15px]',
-} as const;
+const sizes: Record<ButtonSize, string> = {
+  sm: 'px-5 py-2 text-[15px] shadow-[0_3px_0_var(--btn-sh,var(--sh))] hover:shadow-[0_1px_0_var(--btn-sh,var(--sh))]',
+  md: 'px-6 py-3.5 text-base shadow-[0_5px_0_var(--btn-sh,var(--sh))] hover:shadow-[0_2px_0_var(--btn-sh,var(--sh))] sm:text-lg',
+  lg: 'px-7 py-4 text-lg shadow-[0_5px_0_var(--btn-sh,var(--sh))] hover:shadow-[0_2px_0_var(--btn-sh,var(--sh))] sm:text-xl',
+  xl: 'px-6 py-4 text-lg shadow-[0_5px_0_var(--btn-sh,var(--sh))] hover:shadow-[0_2px_0_var(--btn-sh,var(--sh))] sm:px-9 sm:py-5 sm:text-[26px]',
+};
 
+/** Pill button with a hard offset shadow that sinks on hover/press. Renders an `<a>` when given `href`. */
 export const Button: React.FC<ButtonProps> = ({ children, variant = 'primary', size = 'md', className = '', ...rest }) => {
-  const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
+  const cls = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
 
-  if (rest.href !== undefined) {
+  if ('href' in rest && rest.href !== undefined) {
     const { href, ...anchor } = rest;
+    const external = /^https?:\/\//.test(href);
     return (
-      <a href={href} className={classes} {...anchor}>
+      <a
+        href={href}
+        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        {...anchor}
+        className={cls}
+      >
         {children}
       </a>
     );
   }
 
-  const { type = 'button', ...button } = rest;
+  const { type = 'button', ...button } = rest as React.ButtonHTMLAttributes<HTMLButtonElement>;
   return (
-    <button type={type} className={classes} {...button}>
+    <button type={type} {...button} className={cls}>
       {children}
     </button>
   );

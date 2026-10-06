@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type RefObject } from 'react';
 
 const STORAGE_KEY = 'color-theme';
 
@@ -43,9 +43,25 @@ export const useTheme = () => {
   return { isDark, toggleTheme };
 };
 
-/** Which of the given section ids is currently "active" (crossing 35% of the viewport). */
+/**
+ * Which of the given section ids is currently "active" (crossing 35% of the viewport).
+ * `select(id)` pins the highlight to a clicked link until the smooth scroll it triggers has
+ * finished, so the highlight does not hop through the sections in between.
+ */
 export const useActiveSection = (ids: readonly string[]) => {
-  const [active, setActive] = useState<string>(ids[0]);
+  const [active, setActive] = useState<string>('');
+  const pinned = useRef(false);
+  const releaseTimer = useRef(0);
+
+  const select = useCallback((id: string) => {
+    pinned.current = true;
+    setActive(id);
+    window.clearTimeout(releaseTimer.current);
+    // Fallback in case the target is already in view and no scroll event ever fires.
+    releaseTimer.current = window.setTimeout(() => {
+      pinned.current = false;
+    }, 3000);
+  }, []);
 
   useEffect(() => {
     const sections = ids
@@ -56,18 +72,27 @@ export const useActiveSection = (ids: readonly string[]) => {
     let ticking = false;
     const update = () => {
       ticking = false;
+      if (pinned.current) return;
       const line = window.innerHeight * 0.35;
-      let current = sections[0];
+      let current = '';
       for (const section of sections) {
-        if (section.getBoundingClientRect().top <= line) current = section;
+        if (section.getBoundingClientRect().top <= line) current = section.id;
       }
       const scroller = document.scrollingElement ?? document.documentElement;
       if (scroller.scrollHeight - scroller.scrollTop - window.innerHeight < 4) {
-        current = sections[sections.length - 1];
+        current = sections[sections.length - 1].id;
       }
-      setActive(current.id);
+      setActive(current);
     };
     const onScroll = () => {
+      if (pinned.current) {
+        // Still scrolling towards the clicked section: release once the scroll settles.
+        window.clearTimeout(releaseTimer.current);
+        releaseTimer.current = window.setTimeout(() => {
+          pinned.current = false;
+        }, 160);
+        return;
+      }
       if (!ticking) {
         ticking = true;
         requestAnimationFrame(update);
@@ -80,61 +105,55 @@ export const useActiveSection = (ids: readonly string[]) => {
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
+      window.clearTimeout(releaseTimer.current);
     };
   }, [ids]);
 
-  return active;
+  return { active, select };
 };
 
-/**
- * Pads a block so its border-box height is a multiple of the background grid step,
- * keeping the next full-width divider on a grid line. The extra padding is exposed
- * as the `--snap` CSS variable, consumed by the `.pad-*` classes in App.css.
- */
-export const useGridSnap = <T extends HTMLElement>() => {
-  const ref = useRef<T>(null);
+const reducedMotionQuery = '(prefers-reduced-motion: reduce)';
 
-  useLayoutEffect(() => {
+/** True when the user asked the OS to cut down on motion. */
+export const usePrefersReducedMotion = () =>
+  useSyncExternalStore(
+    (notify) => {
+      const mq = window.matchMedia(reducedMotionQuery);
+      mq.addEventListener('change', notify);
+      return () => mq.removeEventListener('change', notify);
+    },
+    () => window.matchMedia(reducedMotionQuery).matches,
+    () => false,
+  );
+
+/** Tracks (without re-rendering) whether an element is on screen, so animation loops can idle. */
+export const useOnScreen = <T extends HTMLElement>(ref: RefObject<T | null>) => {
+  const visible = useRef(true);
+
+  useEffect(() => {
     const el = ref.current;
-    if (!el || typeof ResizeObserver === 'undefined') return;
-
-    const step = parseFloat(getComputedStyle(el).getPropertyValue('--grid-step')) || 40;
-    let extra = 0;
-    const apply = () => {
-      const base = el.getBoundingClientRect().height - extra;
-      const next = (step - (base % step)) % step;
-      if (Math.abs(next - extra) < 0.01) return;
-      extra = next;
-      el.style.setProperty('--snap', `${next.toFixed(2)}px`);
-    };
-
-    const ro = new ResizeObserver(apply);
-    ro.observe(el);
-    apply();
-    // Web fonts swap after first layout; content boxes change but re-measure explicitly to be safe.
-    let cancelled = false;
-    document.fonts?.ready.then(() => {
-      if (!cancelled) apply();
+    if (!el || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(([entry]) => {
+      visible.current = entry.isIntersecting;
     });
-    return () => {
-      cancelled = true;
-      ro.disconnect();
-      el.style.removeProperty('--snap');
-    };
-  }, []);
+    io.observe(el);
+    return () => io.disconnect();
+  }, [ref]);
 
-  return ref;
+  return visible;
 };
 
 /** Copy text to the clipboard and report success for `resetAfter` ms. */
-export const useCopy = (resetAfter = 1500) => {
+export const useCopy = (resetAfter = 1800) => {
   const [copied, setCopied] = useState(false);
+  const [burst, setBurst] = useState(0);
 
   const copy = useCallback(
     async (text: string) => {
       try {
         await navigator.clipboard.writeText(text);
         setCopied(true);
+        setBurst((n) => n + 1);
         window.setTimeout(() => setCopied(false), resetAfter);
       } catch {
         setCopied(false);
@@ -143,7 +162,7 @@ export const useCopy = (resetAfter = 1500) => {
     [resetAfter],
   );
 
-  return { copied, copy };
+  return { copied, copy, burst };
 };
 
 export { useLocale } from './useLocale';

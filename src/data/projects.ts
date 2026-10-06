@@ -1,45 +1,52 @@
-import type { Project } from '../types';
+import type { Project, ProjectLink } from '../types';
 import { translations, type Locale } from '../i18n/translations';
 import { LINKS } from '../constants';
 
 export interface ProjectsData {
-  featured: Project;
-  /** Web projects shown in the main grid. */
+  /** Big alternating posters: the first one is the featured project. */
   web: Project[];
-  /** FiveM work, shown in a compact secondary block. */
+  /** FiveM work, shown in its own carousel. */
   fivem: Project[];
 }
 
 export const getProjects = (locale: Locale): ProjectsData => {
   const { items, links } = translations[locale].projects;
 
-  const featured: Project = {
-    id: 'boutique-stays',
-    title: items.boutiqueStays.title,
-    description: items.boutiqueStays.description,
-    features: [...items.boutiqueStays.features],
-    year: 2026,
-    kind: 'web',
-    inDevelopment: true,
-    closedSource: true,
-    thumbnail: '/thumbnails/booking_app.webp',
-    tech: ['Next.js 16', 'React', 'TypeScript', 'Supabase', 'Stripe', 'Resend'],
-    links: [{ label: links.preview, url: 'https://boutique.boscho.tech/', icon: 'external', primary: true }],
-  };
+  const external = (label: string, url: string): ProjectLink => ({ label, url, kind: 'external' });
+  const code = (label: string, url: string): ProjectLink => ({ label, url, kind: 'code' });
+
+  const boutique = external(links.viewDemo, 'https://boutique.boscho.tech/');
+  const mdDemo = external(links.demo, 'https://md.boscho.tech/');
+  const portfolioCode = code(links.code, LINKS.source);
 
   const web: Project[] = [
+    {
+      id: 'boutique-stays',
+      title: items.boutiqueStays.title,
+      description: items.boutiqueStays.description,
+      year: 2026,
+      kind: 'web',
+      status: 'developmentClient',
+      thumbnail: '/thumbnails/booking_app.webp',
+      tech: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Stripe'],
+      host: 'boutique.boscho.tech',
+      tone: 'pink',
+      links: [boutique],
+      mainLink: { ...boutique, label: links.openDemo },
+    },
     {
       id: 'md-converter',
       title: items.mdConverter.title,
       description: items.mdConverter.description,
       year: 2026,
       kind: 'web',
+      status: 'demo',
       thumbnail: '/thumbnails/md-converter.webp',
-      tech: ['Svelte', 'TypeScript', 'Vite', 'Tailwind'],
-      links: [
-        { label: links.code, url: 'https://github.com/bosch0/.MD-Converter', icon: 'code' },
-        { label: links.demo, url: 'https://md.boscho.tech/', icon: 'external' },
-      ],
+      tech: ['Svelte', 'TypeScript', 'Vite', 'Tailwind CSS'],
+      host: 'md.boscho.tech',
+      tone: 'mint',
+      links: [mdDemo, code(links.code, 'https://github.com/bosch0/.MD-Converter')],
+      mainLink: { ...mdDemo, label: links.openDemo },
     },
     {
       id: 'portfolio',
@@ -47,56 +54,76 @@ export const getProjects = (locale: Locale): ProjectsData => {
       description: items.portfolio.description,
       year: 2026,
       kind: 'web',
+      status: 'openSource',
       thumbnail: '/thumbnails/portfolio.webp',
-      tech: ['React', 'TypeScript', 'Vite', 'Tailwind'],
-      links: [{ label: links.code, url: LINKS.source, icon: 'code' }],
+      tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'],
+      host: 'github.com/bosch0/Portfolio',
+      tone: 'yellow',
+      links: [portfolioCode],
+      mainLink: { ...portfolioCode, label: links.viewCode },
     },
   ];
+
+  const fivemProject = (
+    p: Pick<Project, 'id' | 'title' | 'description' | 'year' | 'kind' | 'status' | 'thumbnail' | 'tech' | 'period'>,
+    link: ProjectLink,
+  ): Project => ({ ...p, links: [link], mainLink: link });
 
   const fivem: Project[] = [
-    {
-      id: 'bcs-scripts',
-      title: items.bcs.title,
-      description: items.bcs.description,
-      year: 2026,
-      kind: 'store',
-      thumbnail: '/thumbnails/bcs.webp',
-      tech: ['Lua', 'ESX', 'QBCore', 'OX'],
-      links: [{ label: links.web, url: LINKS.store, icon: 'external' }],
-    },
-    {
-      id: 'paragon-roleplay',
-      title: items.paragon.title,
-      description: items.paragon.description,
-      year: 2026,
-      kind: 'fivem',
-      inDevelopment: true,
-      thumbnail: '/thumbnails/paragon.webp',
-      tech: ['Lua', 'React', 'MariaDB'],
-      links: [{ label: links.web, url: 'https://paragonrp.creative-store.es/', icon: 'external' }],
-    },
-    {
-      id: 'onerpg',
-      title: items.oneRpg.title,
-      description: items.oneRpg.description,
-      year: 2024,
-      kind: 'fivem',
-      thumbnail: '/thumbnails/onerpg.webp',
-      tech: ['Lua', 'React', 'MariaDB'],
-      links: [{ label: links.web, url: 'https://onerpg.net/', icon: 'external' }],
-    },
-    {
-      id: 'hidden-rp',
-      title: items.hiddenRp.title,
-      description: items.hiddenRp.description,
-      year: 2022,
-      period: '2022 – 2024',
-      kind: 'fivem',
-      thumbnail: '/thumbnails/hiddenrp.webp',
-      tech: ['Lua', 'Svelte', 'React', 'MariaDB'],
-      links: [{ label: links.video, url: 'https://youtu.be/_NeYUP1XY5Q', icon: 'external' }],
-    },
+    fivemProject(
+      {
+        id: 'bcs-scripts',
+        title: items.bcs.title,
+        description: items.bcs.description,
+        year: 2026,
+        kind: 'store',
+        status: 'store',
+        thumbnail: '/thumbnails/bcs.webp',
+        tech: ['Lua'],
+      },
+      external(links.store, LINKS.store),
+    ),
+    fivemProject(
+      {
+        id: 'paragon-roleplay',
+        title: items.paragon.title,
+        description: items.paragon.description,
+        year: 2026,
+        kind: 'fivem',
+        status: 'development',
+        thumbnail: '/thumbnails/paragon.webp',
+        tech: ['Lua', 'React', 'MariaDB'],
+      },
+      external(links.web, 'https://paragonrp.creative-store.es/'),
+    ),
+    fivemProject(
+      {
+        id: 'onerpg',
+        title: items.oneRpg.title,
+        description: items.oneRpg.description,
+        year: 2024,
+        kind: 'fivem',
+        status: 'production',
+        thumbnail: '/thumbnails/onerpg.webp',
+        tech: ['Lua', 'React', 'MariaDB'],
+      },
+      external(links.web, 'https://onerpg.net/'),
+    ),
+    fivemProject(
+      {
+        id: 'hidden-rp',
+        title: items.hiddenRp.title,
+        description: items.hiddenRp.description,
+        year: 2022,
+        period: '2022 – 2024',
+        kind: 'fivem',
+        status: 'production',
+        thumbnail: '/thumbnails/hiddenrp.webp',
+        tech: ['Lua', 'Svelte', 'React', 'MariaDB'],
+      },
+      external(links.video, 'https://youtu.be/_NeYUP1XY5Q'),
+    ),
   ];
 
-  return { featured, web, fivem };
+  return { web, fivem };
 };
