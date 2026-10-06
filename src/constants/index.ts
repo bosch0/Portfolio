@@ -24,7 +24,7 @@ export const CV_URLS = {
 } as const;
 
 export const STACK = {
-  frontend: ['React', 'Next.js', 'Svelte', 'TypeScript', 'JavaScript', 'Tailwind CSS'],
+  frontend: ['React', 'Next.js', 'Svelte', 'Angular', 'TypeScript', 'JavaScript', 'Tailwind CSS'],
   backend: ['Node.js', 'Express', 'Prisma', 'PHP', 'Java', 'Lua'],
   database: ['PostgreSQL', 'Supabase', 'MariaDB'],
   tools: ['Git', 'GitHub', 'Bash', 'Linux (Ubuntu Server)', 'Vite', 'Stripe', 'Vercel', 'AI'],

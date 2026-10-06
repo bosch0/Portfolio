@@ -5,6 +5,7 @@ export { ReactIcon } from './ReactIcon';
 export { ViteIcon } from './ViteIcon';
 export { TailwindIcon } from './TailwindIcon';
 export { SvelteIcon } from './SvelteIcon';
+export { AngularIcon } from './AngularIcon';
 export { LuaIcon } from './LuaIcon';
 export { MariaDBIcon } from './MariaDBIcon';
 export { GitIcon } from './GitIcon';
