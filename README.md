@@ -7,7 +7,7 @@ A modern, responsive portfolio website built with cutting-edge web technologies 
 - **Responsive Design**: Optimized for all devices from mobile to desktop
 - **Modern UI/UX**: Clean, professional design with smooth animations
 - **Performance Optimized**: Fast loading times and efficient code
-- **SEO Friendly**: +100 lighthouse points.
+- **SEO Friendly**: 100 Lighthouse SEO score on mobile and desktop.
 - **Accessible**: WCAG compliant for inclusive user experience
 - **Interactive Animations**: Smooth transitions using Framer Motion
 - **Dark/Light Theme**: Adaptive design for user preference
@@ -35,20 +35,22 @@ A modern, responsive portfolio website built with cutting-edge web technologies 
 
 ### 💻 Desktop
 - **Lighthouse Score**
-  - Performance: +100
-  - Accessibility: +97
-  - Best practices: +100
-  - SEO: +100
+  - Performance: 100
+  - Accessibility: 100
+  - Best practices: 100
+  - SEO: 100
+  - Agentic Browsing: 2/2
 - **First Contentful Paint**: < 0.4s
 - **Largest Contentful Paint**: < 0.4s
 - **Cumulative Layout Shift**: 0
 
 ### 📱 Mobile
 - **Lighthouse Score**
-  - Performance: +100
-  - Accessibility: +97
-  - Best practices: +100
-  - SEO: +100
+  - Performance: 98
+  - Accessibility: 100
+  - Best practices: 100
+  - SEO: 100
+  - Agentic Browsing: 2/2
 - **First Contentful Paint**: < 1.5s
 - **Largest Contentful Paint**: < 1.5s
 - **Cumulative Layout Shift**: 0
