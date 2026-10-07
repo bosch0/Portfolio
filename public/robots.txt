@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://boscho.tech/sitemap.xml
+Sitemap: https://www.boscho.tech/sitemap.xml
