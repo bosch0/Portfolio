@@ -59,11 +59,11 @@ export const About: React.FC = () => {
           </p>
           <p className="mt-7 max-w-[620px] text-lg leading-relaxed sm:text-xl">{t.about.body}</p>
           <div className="mt-7 flex flex-wrap gap-3.5">
-            <Button href="#contact">
+            <Button href="#contact" className="grow sm:grow-0">
               {t.header.cta}
               <ArrowRightIcon className="size-[18px]" />
             </Button>
-            <Button href={CV_URLS[locale]} variant="card">
+            <Button href={CV_URLS[locale]} variant="card" className="grow sm:grow-0">
               {t.hero.ctaCv}
               <DownloadIcon className="size-[18px]" />
             </Button>
