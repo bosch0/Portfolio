@@ -49,11 +49,11 @@ export const Home: React.FC = () => {
           </p>
 
           <div className="fade-up mt-8 flex flex-wrap gap-4" style={delay(0.85)}>
-            <Button href="#projects" size="lg">
+            <Button href="#projects" size="lg" className="grow sm:grow-0">
               {t.hero.ctaProjects}
               <ArrowDownIcon className="size-5" />
             </Button>
-            <Button href={CV_URLS[locale]} variant="card" size="lg">
+            <Button href={CV_URLS[locale]} variant="card" size="lg" className="grow sm:grow-0">
               {t.hero.ctaCv}
               <DownloadIcon className="size-5" />
             </Button>

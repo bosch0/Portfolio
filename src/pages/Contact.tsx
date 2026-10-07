@@ -68,12 +68,12 @@ export const Contact: React.FC = () => {
               <p className="mt-6 max-w-[600px] text-lg leading-normal sm:text-2xl">{t.contact.lead}</p>
 
               <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-6">
-                <div ref={magnet} onPointerMove={pull} onPointerLeave={release} className="relative -m-4 p-4">
+                <div ref={magnet} onPointerMove={pull} onPointerLeave={release} className="relative -m-4 grow sm:grow-0 p-4">
                   <span
-                    className="relative inline-block transition-[translate] duration-200 ease-out"
+                    className="relative flex transition-[translate] sm:inline-flex duration-200 ease-out"
                     style={{ translate: 'var(--tx, 0px) var(--ty, 0px)' }}
                   >
-                    <Button href={LINKS.mail} variant="yellow" size="xl" aria-label={`${t.contact.mail} ${PROFILE.email}`}>
+                    <Button href={LINKS.mail} variant="yellow" size="xl" className="w-full" aria-label={`${t.contact.mail} ${PROFILE.email}`}>
                       {PROFILE.email}
                     </Button>
                     <span className="pointer-events-none absolute -top-2.5 -right-1.5 inline-flex rotate-[5deg] items-center gap-1.5 rounded-full border-[2.5px] border-line bg-mint px-2.5 py-0.5 font-mono text-[11px] font-medium whitespace-nowrap text-ink shadow-hard-sm">
@@ -82,8 +82,8 @@ export const Contact: React.FC = () => {
                     </span>
                   </span>
                 </div>
-                <span className="relative">
-                  <Button variant={copied ? 'yellow' : 'light'} onClick={() => copy(PROFILE.email)} aria-live="polite">
+                <span className="relative flex grow sm:grow-0">
+                  <Button className="w-full" variant={copied ? 'yellow' : 'light'} onClick={() => copy(PROFILE.email)} aria-live="polite">
                     {copied && <CheckIcon className="size-[18px]" />}
                     {copied ? t.contact.copied : t.contact.copy}
                   </Button>
@@ -92,19 +92,19 @@ export const Contact: React.FC = () => {
               </div>
 
               <div className="mt-8 flex flex-wrap gap-3.5">
-                <Button href={LINKS.linkedin} variant="card">
+                <Button href={LINKS.linkedin} variant="card" className="grow sm:grow-0">
                   <span className={iconBox}>
                     <LinkedInIcon className="size-[17px] fill-current" />
                   </span>
                   LinkedIn
                 </Button>
-                <Button href={LINKS.github} variant="card">
+                <Button href={LINKS.github} variant="card" className="grow sm:grow-0">
                   <span className={iconBox}>
                     <GitHubIcon className="size-[17px] fill-current" />
                   </span>
                   GitHub
                 </Button>
-                <Button href={CV_URLS[locale]} variant="card">
+                <Button href={CV_URLS[locale]} variant="card" className="grow sm:grow-0">
                   <span className={iconBox}>
                     <DownloadIcon className="size-[17px]" />
                   </span>
