@@ -19,7 +19,7 @@ export type ButtonProps = ButtonBase &
 export type ProjectKind = 'web' | 'store' | 'fivem';
 export type ProjectStatus = 'developmentClient' | 'development' | 'demo' | 'openSource' | 'store' | 'production';
 /** Pastel block drawn behind a web project screenshot. */
-export type PosterTone = 'pink' | 'mint' | 'yellow';
+export type PosterTone = 'pink' | 'mint' | 'yellow' | 'sky';
 
 export interface ProjectLink {
   label: string;

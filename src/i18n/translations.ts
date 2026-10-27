@@ -104,6 +104,11 @@ export const translations = {
           description:
             'Plataforma de reservas para un negocio real de apartamentos, pendiente de lanzamiento. Disponibilidad en tiempo real, checkout con Stripe confirmado por webhook y emails transaccionales. Interfaz en tres idiomas (ES · EN · DE).',
         },
+        devSinExperiencia: {
+          title: 'Dev Sin Experiencia',
+          description:
+            'Mi proyecto para estudiantes de FP de informática (DAW, DAM, ASIR): prácticas y primer empleo. Web en Next.js con hero 3D de partículas en canvas, avisos por correo con Supabase y Resend, SEO técnico y analítica solo con consentimiento.',
+        },
         mdConverter: {
           title: 'MD Converter',
           description:
@@ -303,6 +308,11 @@ export const translations = {
           title: 'Boutique Stays',
           description:
             'Booking platform for a real apartment business, awaiting launch. Real-time availability, Stripe checkout confirmed by webhook and transactional email. Interface in three languages (ES · EN · DE).',
+        },
+        devSinExperiencia: {
+          title: 'Dev Sin Experiencia',
+          description:
+            'My project for IT vocational students (DAW, DAM, ASIR): internships and first job. Next.js site with a 3D canvas particle hero, email notifications through Supabase and Resend, technical SEO and consent-only analytics.',
         },
         mdConverter: {
           title: 'MD Converter',

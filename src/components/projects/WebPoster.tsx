@@ -8,6 +8,7 @@ const TONES: Record<PosterTone, string> = {
   pink: 'bg-pink',
   mint: 'bg-mint',
   yellow: 'bg-yellow',
+  sky: 'bg-sky',
 };
 
 interface WebPosterProps {

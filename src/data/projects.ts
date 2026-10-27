@@ -16,6 +16,7 @@ export const getProjects = (locale: Locale): ProjectsData => {
   const code = (label: string, url: string): ProjectLink => ({ label, url, kind: 'code' });
 
   const boutique = external(links.viewDemo, 'https://boutique.boscho.tech/');
+  const dse = external(links.web, 'https://devsinexperiencia.com/');
   const mdDemo = external(links.demo, 'https://md.boscho.tech/');
   const portfolioCode = code(links.code, LINKS.source);
 
@@ -33,6 +34,20 @@ export const getProjects = (locale: Locale): ProjectsData => {
       tone: 'pink',
       links: [boutique],
       mainLink: { ...boutique, label: links.openDemo },
+    },
+    {
+      id: 'dev-sin-experiencia',
+      title: items.devSinExperiencia.title,
+      description: items.devSinExperiencia.description,
+      year: 2026,
+      kind: 'web',
+      status: 'production',
+      thumbnail: '/thumbnails/dev-sin-experiencia.webp',
+      tech: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Supabase'],
+      host: 'devsinexperiencia.com',
+      tone: 'sky',
+      links: [dse],
+      mainLink: dse,
     },
     {
       id: 'md-converter',
